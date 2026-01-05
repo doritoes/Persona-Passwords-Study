@@ -1,20 +1,20 @@
-"""
-generate "human-like" passwords for study
-"""
 import json
 import csv
-import re
 import os
 import sys
 import time
+import uuid
+import string
+from collections import Counter
 from google import genai
 from config import API_KEY
 
 # --- SETTINGS ---
 TARGET_COUNT = 5000
-CHUNK_SIZE = 10 # if it gets large, LLM gets suck into all patternal of related data
+CHUNK_SIZE = 15  # Increased slightly for efficiency given the 48% rejection rate
 OUTPUT_JSON = "personas.json"
 OUTPUT_CSV = "credentials.csv"
+SUMMARY_FILE = "data_summary.txt"
 SECTORS = ["Banking", "Healthcare", "Construction", "Education", "Retail", "Tech"]
 
 # --- FEATURES ---
@@ -27,68 +27,86 @@ BLACKLIST = [
     "winter2026", "autumn2026", "password!", "admin!123", "adminadmin"
 ]
 
+VALID_SYMBOLS = "!@#$%^&*()_+-=[]{}|;:,.<>?"
+
 # --- REPORTING COUNTERS ---
 stats = {
     "total_generated": 0,
     "rejected_complexity": 0,
     "rejected_blacklist": 0,
-    "rejected_duplicate": 0,
+    "rejected_duplicate_persona": 0,
     "accepted": 0
 }
+
+# New counters for password frequency analysis
+personal_pw_registry = Counter()
+work_pw_registry = Counter()
 
 client = genai.Client(api_key=API_KEY)
 
 def validate_password(pw):
-    """Returns (is_valid, reason)"""
     if not pw or len(pw) < 12:
         return False, "complexity"
-
-    classes = [
-        re.search(r'[a-z]', pw), re.search(r'[A-Z]', pw),
-        re.search(r'[0-9]', pw), re.search(r'[^a-zA-Z0-9]', pw)
-    ]
-    if sum(1 for c in classes if c) < 3:
+    has_low = any(c in string.ascii_lowercase for c in pw)
+    has_up  = any(c in string.ascii_uppercase for c in pw)
+    has_num = any(c in string.digits for c in pw)
+    has_sym = any(c in VALID_SYMBOLS for c in pw)
+    all_allowed = string.ascii_letters + string.digits + VALID_SYMBOLS
+    if any(c not in all_allowed for c in pw):
         return False, "complexity"
-
+    if sum([has_low, has_up, has_num, has_sym]) < 3:
+        return False, "complexity"
     if ENABLE_BLACKLIST and pw.lower() in [b.lower() for b in BLACKLIST]:
         return False, "blacklist"
-
     return True, None
 
-
 def get_prompt(count, sector):
-    """ generate a prompt with a seeded value """
+    batch_seed = uuid.uuid4().hex[:8]
     return f"""
     Generate {count} unique personas for a study on password habits in the {sector} sector.
+    Batch Seed: {batch_seed} (Internal entropy seed).
     RESEARCH FOCUS: Credential Reuse.
-    - Diversity: Use a wide range of first and last names from different cultural backgrounds.
+    - Diversity: Global mix of names and backgrounds.
     - personal_password: Raw human root (hobbies, slang, pet names).
     - work_password: A modification of that root (12+ chars, numbers, symbols).
-
-    Return a JSON list of objects with these keys:
-    name, occupation, personal_email, personal_password, work_lanid, work_password, behavior_tag
+    Return a JSON list of objects: name, occupation, personal_email, personal_password, work_lanid, work_password, behavior_tag
     """
 
+def write_summary():
+    """Generates the final distribution report"""
+    with open(SUMMARY_FILE, "w") as f:
+        f.write("=== PERSONA STUDY DATA SUMMARY ===\n")
+        f.write(f"Timestamp: {time.ctime()}\n")
+        f.write(f"Total Accepted Personas: {stats['accepted']}\n")
+        f.write(f"Total API Attempts: {stats['total_generated']}\n")
+        f.write(f"Duplicate Persona Rejections: {stats['rejected_duplicate_persona']}\n\n")
+        
+        f.write("--- TOP 10 REUSED PERSONAL ROOTS ---\n")
+        for pw, count in personal_pw_registry.most_common(10):
+            f.write(f"{pw}: {count} occurrences\n")
+            
+        f.write("\n--- TOP 10 REUSED WORK PASSWORDS ---\n")
+        for pw, count in work_pw_registry.most_common(10):
+            f.write(f"{pw}: {count} occurrences\n")
+
 def run_study():
-    """ create personas with passwords """
     target_sector_override = sys.argv[1] if len(sys.argv) > 1 else None
     all_personas = []
     seen_ids = set()
 
-    # Load existing state
+    # Load existing state and populate registries
     if os.path.exists(OUTPUT_JSON):
         try:
             with open(OUTPUT_JSON, 'r') as f:
                 all_personas = json.load(f)
                 stats["accepted"] = len(all_personas)
                 for p in all_personas:
-                    if p.get('personal_email'): seen_ids.add(p['personal_email'].lower())
-                    if p.get('work_lanid'): seen_ids.add(p['work_lanid'].lower())
+                    seen_ids.add(p['personal_email'].lower())
+                    seen_ids.add(p['work_lanid'].lower())
+                    personal_pw_registry[p['personal_password']] += 1
+                    work_pw_registry[p['work_password']] += 1
         except Exception as e:
-            print(f"Note: Could not load existing JSON: {e}")
-
-    print(f"🚀 Target: {TARGET_COUNT} | Blacklist: {'ON' if ENABLE_BLACKLIST else 'OFF'}")
-    print(f"📊 Starting with {len(all_personas)} existing personas.")
+            print(f"Note: Error loading state: {e}")
 
     while len(all_personas) < TARGET_COUNT:
         sector = target_sector_override if target_sector_override else SECTORS[len(all_personas) % len(SECTORS)]
@@ -98,9 +116,8 @@ def run_study():
             response = client.models.generate_content(
                 model="gemini-2.0-flash",
                 contents=get_prompt(request_count, sector),
-                config={'response_mime_type': 'application/json'}
+                config={'response_mime_type': 'application/json', 'temperature': 1.4, 'top_k': 100, 'top_p': 0.95}
             )
-
             batch_data = json.loads(response.text)
             if isinstance(batch_data, dict):
                 batch_data = next(iter(batch_data.values())) if isinstance(next(iter(batch_data.values())), list) else []
@@ -108,54 +125,54 @@ def run_study():
             valid_batch = []
             for p in batch_data:
                 stats["total_generated"] += 1
-
-                # Deduplication Check
                 p_email = p.get('personal_email', '').lower()
                 w_id = p.get('work_lanid', '').lower()
 
-                if not p_email or not w_id or p_email in seen_ids or w_id in seen_ids:
-                    stats["rejected_duplicate"] += 1
+                if not p_email or p_email in seen_ids or w_id in seen_ids:
+                    stats["rejected_duplicate_persona"] += 1
                     continue
 
-                # Validation Check
                 is_valid, reason = validate_password(p.get('work_password', ''))
-
                 if is_valid:
                     p['sector'] = sector
                     valid_batch.append(p)
                     seen_ids.add(p_email)
                     seen_ids.add(w_id)
                     stats["accepted"] += 1
+                    
+                    # Track password usage (we don't reject these, just log them)
+                    personal_pw_registry[p['personal_password']] += 1
+                    work_pw_registry[p['work_password']] += 1
                 else:
                     if reason == "complexity": stats["rejected_complexity"] += 1
                     if reason == "blacklist": stats["rejected_blacklist"] += 1
 
             all_personas.extend(valid_batch)
-
-            # --- PROGRESS REPORT ---
-            total = stats["total_generated"] or 1
-            print(f"\n--- Progress: {len(all_personas)}/{TARGET_COUNT} [{sector}] ---")
-            print(f"  Complexity Rejections: {(stats['rejected_complexity']/total)*100:.1f}%")
-            print(f"  Blacklist Rejections:  {(stats['rejected_blacklist']/total)*100:.1f}%")
-            print(f"  Duplicate Rejections:  {(stats['rejected_duplicate']/total)*100:.1f}%")
-
-            # Write JSON
             with open(OUTPUT_JSON, 'w') as f:
                 json.dump(all_personas, f, indent=4)
 
-            # Write/Append CSV
-            file_is_empty = not os.path.exists(OUTPUT_CSV) or os.path.getsize(OUTPUT_CSV) == 0
+            # Restored Rich CSV Columns
+            file_exists = os.path.exists(OUTPUT_CSV) and os.path.getsize(OUTPUT_CSV) > 0
             with open(OUTPUT_CSV, 'a', newline='') as f:
                 writer = csv.writer(f, quoting=csv.QUOTE_ALL)
-                if file_is_empty:
-                    writer.writerow(["user_id", "password"])
+                if not file_exists:
+                    writer.writerow(["name", "user_id", "password", "type", "sector", "behavior"])
                 for p in valid_batch:
-                    writer.writerow([p['personal_email'], p['personal_password']])
-                    writer.writerow([p['work_lanid'], p['work_password']])
+                    writer.writerow([p['name'], p['personal_email'], p['personal_password'], "personal", p['sector'], p['behavior_tag']])
+                    writer.writerow([p['name'], p['work_lanid'], p['work_password'], "work", p['sector'], p['behavior_tag']])
+
+            # Update summary file on every batch
+            write_summary()
+
+            total = stats["total_generated"] or 1
+            print(f"\n--- Progress: {len(all_personas)}/{TARGET_COUNT} [{sector}] ---")
+            print(f"  Duplicate Personas: {stats['rejected_duplicate_persona']}")
+            print(f"  Unique Personal PWs: {len(personal_pw_registry)}/{len(all_personas)}")
+            print(f"  Unique Work PWs:     {len(work_pw_registry)}/{len(all_personas)}")
 
         except Exception as e:
             print(f"❌ Error: {e}")
-            time.sleep(2)
+            time.sleep(1)
             continue
 
 if __name__ == "__main__":
