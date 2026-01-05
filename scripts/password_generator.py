@@ -10,7 +10,7 @@ from google import genai
 from config import API_KEY
 
 # --- SETTINGS ---
-TARGET_COUNT = 5000
+TARGET_COUNT = 2500
 CHUNK_SIZE = 15  # Increased slightly for efficiency given the 48% rejection rate
 OUTPUT_JSON = "personas.json"
 OUTPUT_CSV = "credentials.csv"
