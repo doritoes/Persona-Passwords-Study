@@ -83,12 +83,16 @@ def get_prompt(count, sector):
 ## Next Steps
 Start a new Gemini Conversation
 1. add a blacklist of top 25 breached passwords to the password validation function
-2. handle duplicate usernames
-3. perhaps improve on the "work_lanid": "jthompson33" patterns; it's not really relevant
+2. get the sector saved in the results
+3. handle duplicate usernames
 4. update `check_hibp.py` to check the passwords in credentials.csv against HIBP, output csv with additional column indicated if pwned
-5. full run 5000 personas which has 10000 user/pass combos
-6. update `create_hashdumps.py` to generate based on the `credentials.csv` file
-7. run `create_hashdumps.py` to create the hash files
-8. create script to take random selections of each hash file, create the sample files for each hash type
-9. run through password audit engine
-10. take the cracked password list and analyze if there is a relation between the crack of personal vs work passwords; is there a relationship between the two?
+5. ensure the script can handle throttling by google in case it happens
+6. full run 5000 personas which has 10000 user/pass combos
+7. update `create_hashdumps.py` to generate based on the `credentials.csv` file
+8. run `create_hashdumps.py` to create the hash files
+9. create script to take random selections of each hash file, create the sample files for each hash type
+10. run through password audit engine
+11. expand on CSV file with column "was cracked"
+12. take the cracked password list and analyze if there is a relation between the crack of personal vs work passwords; is there a relationship between the two?
+13. analyze top behavior tags, top tags per sector, per occupation
+14. analyze crack rate per sector vs published rates per sector; also crack rates per profession; also crack rates per behavior tag
