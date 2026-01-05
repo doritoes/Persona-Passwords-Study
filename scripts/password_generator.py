@@ -1,54 +1,110 @@
+"""
+Script to use AI LLM to generate "human-like" passwords for study
+"""
 import os
+import re
 import csv
+import sys
 import json
 from google import genai
 from config import API_KEY
 
-# Setup the LLM
-model = genai.Client(api_key=API_KEY)
+# --- SETTINGS ---
+TARGET_COUNT = 5000
+CHUNK_SIZE = 25  # Number of personas to request per API call
+OUTPUT_JSON = "personas.json"
+OUTPUT_CSV = "credentials.csv"
+SECTORS = ["Banking", "Healthcare", "Construction", "Education", "Retail", "Tech"]
 
-def fetch_personas(count=10):
-    prompt = f"""
-    Generate {count} highly distinct fictional personas that reflext realistic, everyday human password behaviors.
-    Each persona must include:
-    - name (full name, do not use double quotes for nicknames)
-    - occupation
-    - personality_trait
-    - personal_email (fictional free email)
-    - personal_password (realistic habits: e.g., 'NameYear', 'Word123' or a phrase like 'ilovemycat')
-    - work_lanid (Standard corporate ID: First inital + Last name, e.g., 'jdoe' or 'smithj')
-    - work_password (12+ chars: must satisfy a corporate policy requiring at least one uppercase, one number, and one symbol, but should look like a person's quick-fix solution to a forced password change)
+client = genai.Client(api_key=API_KEY)
 
-    Return ONLY raw JSON.
+def validate_password(pw):
+    """The Gatekeeper: 12+ chars and 3 of 4: Upper, Lower, Digit, Symbol."""
+    if not pw or len(pw) < 12:
+        return False
+    classes = [
+        re.search(r'[a-z]', pw),
+        re.search(r'[A-Z]', pw),
+        re.search(r'[0-9]', pw),
+        re.search(r'[^a-zA-Z0-9]', pw)
+    ]
+    return sum(1 for c in classes if c) >= 3
+
+def get_prompt(count, sector):
+    """ generate a prompt with a seeded value """
+    return f"""
+    Generate {count} unique personas for a study on password habits in the {sector} sector.
+    RESEARCH FOCUS: Credential Reuse.
+    - personal_password: Raw human root (hobbies, slang, pet names).
+    - work_password: A modification of that root (12+ chars, numbers, symbols).
+
+    Return a JSON list of objects with these keys:
+    name, occupation, personal_email, personal_password, work_lanid, work_password, behavior_tag
     """
 
-    print(f"[*] Requesting {count} personas from Gemini...")
-    response = model.models.generate_content(model="gemini-2.0-flash", contents=prompt)
+def run_study():
+    target_sector_override = sys.argv[1] if len(sys.argv) > 1 else None
+    all_personas = []
 
-    # Clean the response to ensure it's valid JSON
-    raw_text = response.text.strip()
-    if "```json" in raw_text:
-        raw_text = raw_text.split("```json")[1].split("```")[0].strip()
+    if os.path.exists(OUTPUT_JSON):
+        try:
+            with open(OUTPUT_JSON, 'r') as f:
+                all_personas = json.load(f)
+        except:
+            pass
 
-    try:
-        data = json.loads(raw_text)
-        with open("personas.json", "w") as f:
-            json.dump(data, f, indent=4)
-        print("[+] Success! Personas saved to personas.json")
-        return data
-    except Exception as e:
-        print(f"[-] Error parsing JSON: {e}")
-        print("Raw response for debugging:", raw_text)
-        return None
+    print(f"🚀 Target: {TARGET_COUNT} | Starting at: {len(all_personas)}")
+
+    while len(all_personas) < TARGET_COUNT:
+        # Determine sector for this chunk
+        sector = target_sector_override if target_sector_override else SECTORS[len(all_personas) % len(SECTORS)]
+
+        # Calculate how many to ask for (don't exceed CHUNK_SIZE or remaining target)
+        request_count = min(CHUNK_SIZE, TARGET_COUNT - len(all_personas))
+
+        try:
+            # Using response_mime_type forces the model to stay in JSON mode
+            response = client.models.generate_content(
+                model="gemini-2.0-flash",
+                contents=get_prompt(request_count, sector),
+                config={'response_mime_type': 'application/json'}
+            )
+
+            batch_data = json.loads(response.text)
+
+            # If the model returned a dict with a list inside, or just a list
+            if isinstance(batch_data, dict):
+                # Sometimes models wrap lists in a key; try to find it
+                batch_data = next(iter(batch_data.values())) if isinstance(next(iter(batch_data.values())), list) else []
+
+            valid_batch = [p for p in batch_data if validate_password(p.get('work_password', ''))]
+
+            if not valid_batch:
+                print(f"⚠️ Sector {sector}: 0 passed requirements. Retrying...")
+                continue
+
+            all_personas.extend(valid_batch)
+
+            # Atomic-ish Save
+            with open(OUTPUT_JSON, 'w') as f:
+                json.dump(all_personas, f, indent=4)
+
+            # CSV Append
+            file_exists = os.path.isfile(OUTPUT_CSV)
+            with open(OUTPUT_CSV, 'a', newline='') as f:
+                writer = csv.writer(f, quoting=csv.QUOTE_ALL)
+                if not file_exists:
+                    writer.writerow(["user_id", "password"])
+                for p in valid_batch:
+                    writer.writerow([p['personal_email'], p['personal_password']])
+                    writer.writerow([p['work_lanid'], p['work_password']])
+
+            print(f"[✓] Sector: {sector:12} | Added: {len(valid_batch)} | Total: {len(all_personas)}")
+
+        except Exception as e:
+            print(f"❌ Error during generation: {e}")
+            # Optional: break or sleep/retry
+            break
 
 if __name__ == "__main__":
-    data = fetch_personas()
-    csv_file = "credentials.csv"
-    file_is_new = not os.path.exists(csv_file)
-    with open(csv_file, "a", newline="", encoding="utf-8") as cf:
-        writer = csv.writer(cf, quoting=csv.QUOTE_ALL)
-        if file_is_new:
-            writer.writerow(["user", "password"])
-        for p in data:
-            writer.writerow([p.get("personal_email"), p.get("personal_password")])
-            writer.writerow([p.get("work_lanid"), p.get("work_password")])
+    run_study()
