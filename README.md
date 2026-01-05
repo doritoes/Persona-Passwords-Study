@@ -1,15 +1,16 @@
 # Persona-Passwords-Study 🛡️🧠
-
 A behavioral cybersecurity study using Large Language Models (LLMs) to simulate human password generation. This project explores the tension between personal identity (hobbies) and security requirements (leetspeak/complexity) through synthetic personas and behavioral profiling.
 
 ## 📖 Project Overview
+Humans rarely create truly random passwords. Instead, they use "semantic anchors". This involves personally meaningful words or to satisfy security requirements while maintaining memorability. This repository contains the tools and research data used to simulate these behaviors.
 
-Humans rarely create truly random passwords. Instead, they use "semantic anchors"—personally meaningful words or professional tools—to satisfy security requirements while maintaining memorability. This repository contains the tools and research data used to simulate these behaviors across different AI architectures.
+NOTE The key focus is not simulating the full human password selection process, but how "compliant" password may be related to the same "root" used for less complex passwords. The implications of this are that the compromise of "less important/less secure sites or systems" may be used to effectively large the same individual's "more secure" password.
 
 ### Research Goals:
 * **Hobby Anchoring:** Quantifying how often personal interests drive "lazy" email passwords.
 * **Professional Shortcuts:** Analyzing the predictability of leetspeak-modified professional tools (e.g., `Stetho$cope1`).
 * **Architectural Benchmarking:** Comparing the behavioral "reasoning" capabilities of local Edge-AI (NPU) vs. Cloud-based LLMs.
+* **Diversity Challenges:** The LLM likes to keep picking the same names and data over and over. In synthetic data generation, around the 1500-2000 mark "token exhaustion" kicks in. Even with high heath and random seeds (used here) LLMs tend to drift back to their most statistically probable "global" names (the David Smiths and Maria Garcias of the world) once the low-hanging fruit is gone.
 
 ## 🛠️ Evolution of Methodology
 This project began as a local hardware study using **OpenVINO** and the **NPU (Neural Processing Unit)** on a mobile workstation. It continues using cloud AI models.
