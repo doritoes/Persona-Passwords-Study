@@ -4,8 +4,8 @@ Create example shadow files and pwdump files for testing
 
 pip install passlib
 """
-import hashlib from passlib.hash
-import sha512_crypt, nthash
+import hashlib
+from passlib.hash import sha512_crypt, nthash
 
 # Input Data
 data = [
@@ -29,6 +29,7 @@ def generate_shadow_line(user, password):
     return f"{user.lower()}:{shadow_hash}:20386:0:99999:7:::"
 
 def generate_pwdump_line(user, password, uid):
+    """ create example password dump line """
     # nthash is the library's implementation of NTLM
     ntlm = nthash.hash(password).upper()
     lm_empty = "aad3b435b51404eeaad3b435b51404ee"
@@ -68,3 +69,7 @@ with open("sha1.txt", "w") as f:
     f.write("\n".join(sha1_list))
 with open("sha256.txt", "w") as f:
     f.write("\n".join(sha256_list))
+with open("shadow.txt", "w") as f:
+    f.write("\n".join(shadow_output))
+with open("pwdump.txt", "w") as f:
+    f.write("\n".join(pwdump_output))
