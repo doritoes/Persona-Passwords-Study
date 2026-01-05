@@ -96,3 +96,4 @@ Start a new Gemini Conversation
 12. take the cracked password list and analyze if there is a relation between the crack of personal vs work passwords; is there a relationship between the two?
 13. analyze top behavior tags, top tags per sector, per occupation
 14. analyze crack rate per sector vs published rates per sector; also crack rates per profession; also crack rates per behavior tag
+15. Analys of HIBP coverage, HIBP vs cracked
