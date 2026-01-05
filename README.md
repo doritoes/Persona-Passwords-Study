@@ -25,6 +25,8 @@ This project requires a Google AI Studio API Key to run the Gemini 1.5 simulatio
 pip install -r requirements.txt
 
 # Configure your API Key (create this file locally)
+See [Appendix - Get API Key](Appendix_Get_API_Key.md) for instructions on getting a free tier API key. It is rate limited to 15 requests per minute, 1500 per day.
+
 # The config.py is ignored by git to keep your key private
 echo 'API_KEY = "your_key_here"' > config.py
 ```
