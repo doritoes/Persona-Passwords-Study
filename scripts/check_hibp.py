@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """ Check the provided password file against HIBP"""
 import os
 import sys
