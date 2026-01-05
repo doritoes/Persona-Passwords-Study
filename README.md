@@ -85,7 +85,7 @@ Start a new Gemini Conversation
 1. add a blacklist of top 25 breached passwords to the password validation function
 2. handle duplicate usernames
 3. perhaps improve on the "work_lanid": "jthompson33" patterns; it's not really relevant
-4. clean output to `credentials.csv` to just the username and password
+4. update `check_hibp.py` to check the passwords in credentials.csv against HIBP, output csv with additional column indicated if pwned
 5. full run 5000 personas which has 10000 user/pass combos
 6. update `create_hashdumps.py` to generate based on the `credentials.csv` file
 7. run `create_hashdumps.py` to create the hash files
