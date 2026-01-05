@@ -46,55 +46,69 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
     * Create a `config.py` (added to `.gitignore`) and add: 
         `API_KEY = "your_key_here"`
 
+### Start Creating Data
+1. `password_generator.py`
+    - creates `personas.json`
+    - creates `credentials.csv`
+    - creates `data_summary.txt`
+    - Review these files while the code runs
+        - `watch -d 'cat data_summary.txt;'`
+    - Note as the Gemini model struggles to come up with more unique personas
+        - Duplicate personas: same name, rejected by script
+        - Non-unique personal passwords: allowed by script, note similar common rules in actual password dumps
+        - Non-unique work passwords: allowed by script, note it's less common than for personal passwords; if this starts creeping up, the model has got stuck in a loop doing the same transformations every time
+2. check_hibp.py
+3. create_hashdumps.py
+
+### Start Analyzing the Data and Cracking Results
+
 ## 📊 Data Format
 The generated study data is saved in JSON format with the following schema:
 ```json
 {
   "name": "Full Name",
-  "job": "Occupation",
-  "hobby": "Personal Interest",
-  "logic_note": "Reasoning for password choices",
-  "email_pwd": "Hobby-based password",
-  "work_pwd": "Complex career-based password"
+  "occupation": "Occupation",
+  "personal_email": "Personal Interest",
+  "personal_password": "Reasoning for password choices",
+  "work_lanid": "Hobby-based password",
+  "work_password": "Complex career-based password",
+  "behavior_tag": "How the root (personal password) was transformed to be come the work password",
+  "sector": "The name of the sector provided in the prompt"
 }
 ```
 
 An additional credentials.csv is saved in CSV format
 ```csv
-"name","user_id","password","type","sector","behavior"
+"user_id","password"
 ```
 
 ## Status
-The current prompt function gives some passable results. It is currently too focused on password reuse (personal to work password relationship), but this is an interesting field of study. The work passwords are checked for validity to 12+ chars and 3 of 4: Upper, Lower, Digit, Symbol
+The current prompt function gives some passable results. It is currently too focused on password reuse (personal to work password relationship), but this is an interesting field of study. The work passwords are checked for validity to 12+ chars and 3 of 4: Upper, Lower, Digit, Symbol. Duplicate personas are prevented from being collected in the output.
 
 ```python
 def get_prompt(count, sector):
+    batch_seed = uuid.uuid4().hex[:8]
     return f"""
     Generate {count} unique personas for a study on password habits in the {sector} sector.
-
+    Batch Seed: {batch_seed} (Internal entropy seed).
     RESEARCH FOCUS: Credential Reuse.
-    - personal_password: Raw human root (hobbies, slang, swearing, pet names).
-    - work_password: A modification of that root that is AT LEAST 12 characters
-      and includes numbers and symbols (e.g., 'rootword' -> 'Rootword!2026').
-
-    Return ONLY a raw JSON list:
-    [{{"name":"", "occupation":"", "personal_email":"", "personal_password":"", "work_lanid":"", "work_password":"", "behavior_tag":""}}]
+    - Diversity: Global mix of names and backgrounds.
+    - personal_password: Raw human root (hobbies, slang, pet names).
+    - work_password: A modification of that root (12+ chars, numbers, symbols).
+    Return a JSON list of objects: name, occupation, personal_email, personal_password, work_lanid, work_password, behavior_tag
     """
 ```
+
 ## Next Steps
-Start a new Gemini Conversation
-1. add a blacklist of top 25 breached passwords to the password validation function
-2. get the sector saved in the results
-3. handle duplicate usernames
-4. update `check_hibp.py` to check the passwords in credentials.csv against HIBP, output csv with additional column indicated if pwned
-5. ensure the script can handle throttling by google in case it happens
-6. full run 5000 personas which has 10000 user/pass combos
-7. update `create_hashdumps.py` to generate based on the `credentials.csv` file
-8. run `create_hashdumps.py` to create the hash files
-9. create script to take random selections of each hash file, create the sample files for each hash type
-10. run through password audit engine
-11. expand on CSV file with column "was cracked"
-12. take the cracked password list and analyze if there is a relation between the crack of personal vs work passwords; is there a relationship between the two?
-13. analyze top behavior tags, top tags per sector, per occupation
-14. analyze crack rate per sector vs published rates per sector; also crack rates per profession; also crack rates per behavior tag
-15. Analys of HIBP coverage, HIBP vs cracked
+1. update `check_hibp.py` to check the passwords in credentials.csv against HIBP, output csv with additional column indicated if pwned
+2. ensure the script can handle throttling by google in case it happens
+3. full run 2500 personas which has 5000 user/pass combos
+4. update `create_hashdumps.py` to generate based on the `credentials.csv` file
+5. run `create_hashdumps.py` to create the hash files
+6. create script to take random selections of each hash file, create the sample files for each hash type
+7. run through password audit engine
+8. expand on CSV file with column "was cracked"
+9. take the cracked password list and analyze if there is a relation between the crack of personal vs work passwords; is there a relationship between the two?
+10. analyze top behavior tags, top tags per sector, per occupation
+11. analyze crack rate per sector vs published rates per sector; also crack rates per profession; also crack rates per behavior tag
+12. Analys of HIBP coverage, HIBP vs cracked
