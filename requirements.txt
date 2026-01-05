@@ -7,7 +7,7 @@ requests
 # --- Security & Hashing ---
 # Used for create_hashdumps.py if you use modern hashing algorithms
 bcrypt
-# hashlib is part of the standard library, no need to list it here
+passlib
 
 # --- Environment ---
 python-dotenv
