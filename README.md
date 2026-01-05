@@ -1,58 +1,48 @@
 # Persona-Passwords-Study 🛡️🧠
 
-A behavioral cybersecurity study using Large Language Models (LLMs) to simulate human password generation. This project explores the tension between personal identity (hobbies) and security requirements (leetspeak/complexity) through synthetic personas and behavioral profiling.
+A behavioral cybersecurity research framework designed to simulate and analyze human password creation patterns through synthetic personas. This project leverages Large Language Models (LLMs) to bridge the gap between technical security requirements and human psychology.
 
-## 📖 Project Overview
+## 📖 Research Focus: Semantic Anchoring
+This project investigates **Semantic Anchoring**—a cognitive bias where individuals tie "random" data like passwords to familiar mental models. Even when following corporate complexity rules, humans rarely choose high-entropy strings; instead, they gravitate toward predictable shortcuts based on their personal lives or professions.
 
-Humans rarely create truly random passwords. Instead, they use "semantic anchors"—personally meaningful words or professional tools—to satisfy security requirements while maintaining memorability. This repository contains the tools and research data used to simulate these behaviors across different AI architectures.
+### Key Behavioral Vectors:
+* **Hobby-Based Laziness:** Weak, low-entropy passwords used for personal accounts based on passionate interests.
+* **Professional Leetspeak:** "Complex" work passwords that satisfy corporate audits but are actually predictable leetspeak versions of tools used daily.
 
-### Research Goals:
-* **Hobby Anchoring:** Quantifying how often personal interests drive "lazy" email passwords.
-* **Professional Shortcuts:** Analyzing the predictability of leetspeak-modified professional tools (e.g., `Stetho$cope1`).
-* **Architectural Benchmarking:** Comparing the behavioral "reasoning" capabilities of local Edge-AI (NPU) vs. Cloud-based LLMs.
+## 🚀 Installation & Setup
 
-## 🛠️ Evolution of Methodology
+### 1. Clone the Repository
+```bash
+git clone -b build [https://github.com/doritoes/Persona-Passwords-Study.git](https://github.com/doritoes/Persona-Passwords-Study.git)
+cd Persona-Passwords-Study
+```
 
-This project began as a local hardware study using **OpenVINO** and the **NPU (Neural Processing Unit)** on a mobile workstation. 
+### 2. Environment Setup
+This project requires a Google AI Studio API Key to run the Gemini 1.5 simulation engine.
 
-### Phase 1: Local Edge-AI (Qwen-1.5B)
-Initially, we attempted to use Qwen-1.5B via `openvino_genai`. This phase revealed significant **Instruction Collapse** in small models; the model struggled to maintain complex JSON structures while simultaneously inventing unique personas, often defaulting to generic tokens (e.g., "John Smith").
+```bash
+# Install dependencies
+pip install -r requirements.txt
 
-### Phase 2: Cloud-Based Reasoning (Gemini 1.5 Flash)
-To achieve higher behavioral fidelity, the study pivoted to the **Gemini API**. This allowed for:
-* **Native JSON Output:** Reliable structured data without parsing errors.
-* **Diverse Identities:** Greater cultural and professional variety in generated personas.
-* **Deep Reasoning:** High-quality "logic notes" explaining the simulated user's choices.
+# Configure your API Key (create this file locally)
+# The config.py is ignored by git to keep your key private
+echo 'API_KEY = "your_key_here"' > config.py
+```
 
-## 🚀 Getting Started
+## 🛠️ Toolset
+- `password_generator.py`: Generates culturally and professionally diverse personas and their simulated passwords
+- `scripts/check_hibp.py`: Verifies if the simulated "human" passwords have appeared in real-world data breaches
+- `scripts/create_hashdumps.py`: Converts personas into NTLM/SHA-256 hash lists for penetration testing simulations
 
-### Prerequisites
-* Python 3.10+
-* Google AI Studio API Key (Free Tier)
-* (Optional) OpenVINO Toolkit for local NPU experiments
-
-### Installation
-1.  Clone the repository:
-    ```bash
-    git clone [https://github.com/YOUR_USERNAME/Persona-Passwords-Study.git](https://github.com/YOUR_USERNAME/Persona-Passwords-Study.git)
-    cd Persona-Passwords-Study
-    ```
-2.  Install dependencies:
-    ```bash
-    pip install -U google-generativeai
-    ```
-3.  Set up your API Key:
-    * Create a `config.py` (added to `.gitignore`) and add: 
-        `API_KEY = "your_key_here"`
-
-## 📊 Data Format
-The generated study data is saved in JSON format with the following schema:
+## 📊 Sample Persona Data
+The study generates structured data that reveals the "Logic Note" behind a user's choice:
 ```json
 {
-  "name": "Full Name",
-  "job": "Occupation",
-  "hobby": "Personal Interest",
-  "logic_note": "Reasoning for password choices",
-  "email_pwd": "Hobby-based password",
-  "work_pwd": "Complex career-based password"
+  "name": "Elena Vance",
+  "job": "NICU Nurse",
+  "hobby": "Mechanical Keyboards",
+  "logic_note": "Tied her work password to her daily tool (Stethoscope) to pass complexity audits easily.",
+  "email_pwd": "cherrymxblue",
+  "work_pwd": "$teth0sc0pe!"
 }
+```
