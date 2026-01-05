@@ -1,7 +1,8 @@
-import json
-import csv
+""" generate "human-like" passwords for study """
 import os
+import csv
 import sys
+import json
 import time
 import uuid
 import string
@@ -80,16 +81,17 @@ def write_summary():
         f.write(f"Total Accepted Personas: {stats['accepted']}\n")
         f.write(f"Total API Attempts: {stats['total_generated']}\n")
         f.write(f"Duplicate Persona Rejections: {stats['rejected_duplicate_persona']}\n\n")
-        
+
         f.write("--- TOP 10 REUSED PERSONAL ROOTS ---\n")
         for pw, count in personal_pw_registry.most_common(10):
             f.write(f"{pw}: {count} occurrences\n")
-            
+
         f.write("\n--- TOP 10 REUSED WORK PASSWORDS ---\n")
         for pw, count in work_pw_registry.most_common(10):
             f.write(f"{pw}: {count} occurrences\n")
 
 def run_study():
+    """ run the password study """
     target_sector_override = sys.argv[1] if len(sys.argv) > 1 else None
     all_personas = []
     seen_ids = set()
@@ -139,13 +141,15 @@ def run_study():
                     seen_ids.add(p_email)
                     seen_ids.add(w_id)
                     stats["accepted"] += 1
-                    
+
                     # Track password usage (we don't reject these, just log them)
                     personal_pw_registry[p['personal_password']] += 1
                     work_pw_registry[p['work_password']] += 1
                 else:
-                    if reason == "complexity": stats["rejected_complexity"] += 1
-                    if reason == "blacklist": stats["rejected_blacklist"] += 1
+                    if reason == "complexity":
+                        stats["rejected_complexity"] += 1
+                    if reason == "blacklist":
+                        stats["rejected_blacklist"] += 1
 
             all_personas.extend(valid_batch)
             with open(OUTPUT_JSON, 'w') as f:
@@ -156,15 +160,14 @@ def run_study():
             with open(OUTPUT_CSV, 'a', newline='') as f:
                 writer = csv.writer(f, quoting=csv.QUOTE_ALL)
                 if not file_exists:
-                    writer.writerow(["name", "user_id", "password", "type", "sector", "behavior"])
+                    writer.writerow(["user_id", "password"])
                 for p in valid_batch:
-                    writer.writerow([p['name'], p['personal_email'], p['personal_password'], "personal", p['sector'], p['behavior_tag']])
-                    writer.writerow([p['name'], p['work_lanid'], p['work_password'], "work", p['sector'], p['behavior_tag']])
+                    writer.writerow([p['personal_email'], p['personal_password']])
+                    writer.writerow([p['work_lanid'], p['work_password']])
 
             # Update summary file on every batch
             write_summary()
 
-            total = stats["total_generated"] or 1
             print(f"\n--- Progress: {len(all_personas)}/{TARGET_COUNT} [{sector}] ---")
             print(f"  Duplicate Personas: {stats['rejected_duplicate_persona']}")
             print(f"  Unique Personal PWs: {len(personal_pw_registry)}/{len(all_personas)}")
