@@ -1,50 +1,94 @@
 # Persona-Passwords-Study 🛡️🧠
 
-A behavioral cybersecurity research framework designed to simulate and analyze human password creation patterns through synthetic personas. This project leverages Large Language Models (LLMs) to bridge the gap between technical security requirements and human psychology.
+A behavioral cybersecurity study using Large Language Models (LLMs) to simulate human password generation. This project explores the tension between personal identity (hobbies) and security requirements (leetspeak/complexity) through synthetic personas and behavioral profiling.
 
-## 📖 Research Focus: Semantic Anchoring
-This project investigates **Semantic Anchoring**—a cognitive bias where individuals tie "random" data like passwords to familiar mental models. Even when following corporate complexity rules, humans rarely choose high-entropy strings; instead, they gravitate toward predictable shortcuts based on their personal lives or professions.
+## 📖 Project Overview
 
-### Key Behavioral Vectors:
-* **Hobby-Based Laziness:** Weak, low-entropy passwords used for personal accounts based on passionate interests.
-* **Professional Leetspeak:** "Complex" work passwords that satisfy corporate audits but are actually predictable leetspeak versions of tools used daily.
+Humans rarely create truly random passwords. Instead, they use "semantic anchors"—personally meaningful words or professional tools—to satisfy security requirements while maintaining memorability. This repository contains the tools and research data used to simulate these behaviors across different AI architectures.
 
-## 🚀 Installation & Setup
+### Research Goals:
+* **Hobby Anchoring:** Quantifying how often personal interests drive "lazy" email passwords.
+* **Professional Shortcuts:** Analyzing the predictability of leetspeak-modified professional tools (e.g., `Stetho$cope1`).
+* **Architectural Benchmarking:** Comparing the behavioral "reasoning" capabilities of local Edge-AI (NPU) vs. Cloud-based LLMs.
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/doritoes/Persona-Passwords-Study
-cd Persona-Passwords-Study
-```
+## 🛠️ Evolution of Methodology
+This project began as a local hardware study using **OpenVINO** and the **NPU (Neural Processing Unit)** on a mobile workstation. It continues using cloud AI models.
 
-### 2. Environment Setup
-This project requires a Google AI Studio API Key to run the Gemini 1.5 simulation engine.
+### Phase 1: Local Edge-AI (Qwen-1.5B)
+Initially, we attempted to use Qwen-1.5B via `openvino_genai`. This phase revealed significant **Instruction Collapse** in small models; the model struggled to maintain complex JSON structures while simultaneously inventing unique personas, often defaulting to generic tokens (e.g., "John Smith").
 
-See [Appendix - Get API Key](Appendix_Get_API_Key.md) for instructions on getting a free tier API key. It is rate limited to 15 requests per minute, 1500 per day.
+### Phase 2: Cloud-Based Reasoning (Gemini 2.5 Flash)
+To achieve higher behavioral fidelity, the study pivoted to the **Gemini API**. This allowed for:
+* **Native JSON Output:** Reliable structured data without parsing errors.
+* **Diverse Identities:** Greater cultural and professional variety in generated personas.
+* **Deep Reasoning:** High-quality "logic notes" explaining the simulated user's choices.
 
-```bash
-# Install dependencies
-pip install -r requirements.txt
+Using gemini.google.com to build prompts led to a variety of caricatures of human behavor. Essentially the study is a "mirror of a mirror", according to Gemini itself. It is a struggle to get natural behavior.
 
-# Configure your API Key (create this file locally)
-# The config.py is ignored by git to keep your key private
-echo 'API_KEY = "your_key_here"' > config.py
-```
+## 🚀 Getting Started
+### Prerequisites
+* Python 3.10+
+* Google AI Studio API Key (Free Tier)
+* (Optional) OpenVINO Toolkit for local NPU experiments
 
-## 🛠️ Toolset
-- `password_generator.py`: Generates culturally and professionally diverse personas and their simulated passwords
-- `scripts/check_hibp.py`: Verifies if the simulated "human" passwords have appeared in real-world data breaches
-- `scripts/create_hashdumps.py`: Converts personas into NTLM/SHA-256 hash lists for penetration testing simulations
+### Installation
+1.  Clone the repository:
+    ```bash
+    git clone [https://github.com/YOUR_USERNAME/Persona-Passwords-Study.git](https://github.com/YOUR_USERNAME/Persona-Passwords-Study.git)
+    cd Persona-Passwords-Study
+    ```
+2.  Install dependencies:
+    ```bash
+    pip install -U google-generativeai
+    ```
+3.  Set up your API Key:
+    * Create a `config.py` (added to `.gitignore`) and add: 
+        `API_KEY = "your_key_here"`
 
-## 📊 Sample Persona Data
-The study generates structured data that reveals the "Logic Note" behind a user's choice:
+## 📊 Data Format
+The generated study data is saved in JSON format with the following schema:
 ```json
 {
-  "name": "Elena Vance",
-  "job": "NICU Nurse",
-  "hobby": "Mechanical Keyboards",
-  "logic_note": "Tied her work password to her daily tool (Stethoscope) to pass complexity audits easily.",
-  "email_pwd": "cherrymxblue",
-  "work_pwd": "$teth0sc0pe!"
+  "name": "Full Name",
+  "job": "Occupation",
+  "hobby": "Personal Interest",
+  "logic_note": "Reasoning for password choices",
+  "email_pwd": "Hobby-based password",
+  "work_pwd": "Complex career-based password"
 }
 ```
+
+An additional credentials.csv is saved in CSV format
+```csv
+"name","user_id","password","type","sector","behavior"
+```
+
+## Status
+The current prompt function gives some passable results. It is currently too focused on password reuse (personal to work password relationship), but this is an interesting field of study. The work passwords are checked for validity to 12+ chars and 3 of 4: Upper, Lower, Digit, Symbol
+
+```python
+def get_prompt(count, sector):
+    return f"""
+    Generate {count} unique personas for a study on password habits in the {sector} sector.
+
+    RESEARCH FOCUS: Credential Reuse.
+    - personal_password: Raw human root (hobbies, slang, swearing, pet names).
+    - work_password: A modification of that root that is AT LEAST 12 characters
+      and includes numbers and symbols (e.g., 'rootword' -> 'Rootword!2026').
+
+    Return ONLY a raw JSON list:
+    [{{"name":"", "occupation":"", "personal_email":"", "personal_password":"", "work_lanid":"", "work_password":"", "behavior_tag":""}}]
+    """
+```
+## Next Steps
+Start a new Gemini Conversation
+1. add a blacklist of top 25 breached passwords to the password validation function
+2. handle duplicate usernames
+3. perhaps improve on the "work_lanid": "jthompson33" patterns; it's not really relevant
+4. clean output to `credentials.csv` to just the username and password
+5. full run 5000 personas which has 10000 user/pass combos
+6. update `create_hashdumps.py` to generate based on the `credentials.csv` file
+7. run `create_hashdumps.py` to create the hash files
+8. create script to take random selections of each hash file, create the sample files for each hash type
+9. run through password audit engine
+10. take the cracked password list and analyze if there is a relation between the crack of personal vs work passwords; is there a relationship between the two?
