@@ -1,5 +1,5 @@
 # --- AI & Behavioral Simulation ---
-google-generativeai
+google-genai
 
 # --- Networking & HIBP API ---
 requests
