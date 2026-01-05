@@ -13,7 +13,7 @@ This project investigates **Semantic Anchoring**—a cognitive bias where indivi
 
 ### 1. Clone the Repository
 ```bash
-git clone -b build [https://github.com/doritoes/Persona-Passwords-Study.git](https://github.com/doritoes/Persona-Passwords-Study.git)
+git clone https://github.com/doritoes/Persona-Passwords-Study
 cd Persona-Passwords-Study
 ```
 
