@@ -12,8 +12,7 @@ Humans rarely create truly random passwords. Instead, they use "semantic anchors
 * **Architectural Benchmarking:** Comparing the behavioral "reasoning" capabilities of local Edge-AI (NPU) vs. Cloud-based LLMs.
 
 ## 🛠️ Evolution of Methodology
-
-This project began as a local hardware study using **OpenVINO** and the **NPU (Neural Processing Unit)** on a mobile workstation. 
+This project began as a local hardware study using **OpenVINO** and the **NPU (Neural Processing Unit)** on a mobile workstation. It continues using cloud AI models.
 
 ### Phase 1: Local Edge-AI (Qwen-1.5B)
 Initially, we attempted to use Qwen-1.5B via `openvino_genai`. This phase revealed significant **Instruction Collapse** in small models; the model struggled to maintain complex JSON structures while simultaneously inventing unique personas, often defaulting to generic tokens (e.g., "John Smith").
@@ -24,7 +23,7 @@ To achieve higher behavioral fidelity, the study pivoted to the **Gemini API**. 
 * **Diverse Identities:** Greater cultural and professional variety in generated personas.
 * **Deep Reasoning:** High-quality "logic notes" explaining the simulated user's choices.
 
-Using gemini.google.com to build prompts let to a variety of caricatures of human behavor. Essentially the study is a "mirror of a mirror", according to Gemini itself
+Using gemini.google.com to build prompts led to a variety of caricatures of human behavor. Essentially the study is a "mirror of a mirror", according to Gemini itself. It is a struggle to get natural behavior.
 
 ## 🚀 Getting Started
 ### Prerequisites
