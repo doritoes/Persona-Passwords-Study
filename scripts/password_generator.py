@@ -1,5 +1,6 @@
 """ generate "human-like" passwords for study - Gemini 2.5 Stable """
 import os
+import re
 import csv
 import sys
 import json
@@ -13,7 +14,7 @@ from config import API_KEY
 
 # --- SETTINGS ---
 TARGET_COUNT = 2500
-CHUNK_SIZE = 10 # smaller chunk size because of JSON failure at high temperature, down from 15
+CHUNK_SIZE = 25
 OUTPUT_JSON = "personas.json"
 OUTPUT_CSV = "credentials.csv"
 SUMMARY_FILE = "data_summary.txt"
@@ -103,6 +104,49 @@ def write_summary():
         for pw, count in work_pw_registry.most_common(10):
             f.write(f"{pw}: {count}\n")
 
+
+def salvage_json(raw_text):
+    """
+    Attempts to extract and repair a partial or corrupted JSON list.
+    Useful for high-temperature hallucinations or truncated responses.
+    """
+    # 1. Try a clean load first
+    try:
+        return json.loads(raw_text)
+    except json.JSONDecodeError:
+        pass
+
+    # 2. Extract everything between the first '[' and the last '}'
+    # This ignores trailing conversational text like "を行いいます。"
+    start_index = raw_text.find('[')
+    last_object_end = raw_text.rfind('}')
+
+    if start_index == -1 or last_object_end == -1:
+        return []
+
+    # Slice the string to end at the last completed object
+    # and force a closing bracket for the list
+    salvaged_text = raw_text[start_index:last_object_end + 1] + "]"
+
+    # 3. Handle the "dangling comma" case (e.g., -}, or }, [garbage])
+    # Removes commas that appear right before the closing bracket
+    salvaged_text = re.sub(r',\s*\]', ']', salvaged_text)
+
+    try:
+        return json.loads(salvaged_text)
+    except json.JSONDecodeError as e:
+        # 4. Final attempt: Character-by-character scan (Slow but sure)
+        # We try to build a string and see at what point it stops being valid
+        objs = []
+        # Simple regex to find potential JSON objects
+        potential_objs = re.findall(r'\{.*?\}', salvaged_text, re.DOTALL)
+        for obj_str in potential_objs:
+            try:
+                objs.append(json.loads(obj_str))
+            except:
+                continue
+        return objs
+
 def run_study():
     """ main generation loop """
     target_sector_override = sys.argv[1] if len(sys.argv) > 1 else None
@@ -143,7 +187,11 @@ def run_study():
                 # Strips ```json and trailing ```
                 raw_text = raw_text.split("```")[1].replace("json", "", 1).strip()
 
-            batch_data = json.loads(raw_text)
+            #batch_data = json.loads(raw_text)
+            batch_data = salvage_json(response.text)
+            if not batch_data:
+                print("Batch completely unreadable, skipping...")
+                continue
 
             # Ensure we have a list (some versions wrap in a dict)
             if isinstance(batch_data, dict):
@@ -180,7 +228,8 @@ def run_study():
                         stats["rejected_blocklist"] += 1
 
             all_personas.extend(valid_batch)
-            with open(OUTPUT_JSON, 'w') as f: json.dump(all_personas, f, indent=4)
+            with open(OUTPUT_JSON, 'w') as f:
+                json.dump(all_personas, f, indent=4)
 
             file_exists = os.path.exists(OUTPUT_CSV) and os.path.getsize(OUTPUT_CSV) > 0
             with open(OUTPUT_CSV, 'a', newline='') as f:
@@ -200,7 +249,6 @@ def run_study():
 
         except Exception as e:
             print(f"❌ API/Parse Error: {e}")
-            print(response.text) # debug
             time.sleep(2)
 
 if __name__ == "__main__":
