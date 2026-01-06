@@ -1,75 +1,80 @@
 #!/usr/bin/env python3
 """
-Create example shadow files and pwdump files for testing
-
-pip install passlib
+Generate shadow, pwdump, and raw hash files from an input CSV.
+Required: pip install passlib
 """
 import hashlib
+import csv
+import sys
+import os
 from passlib.hash import sha512_crypt, nthash
 
-# Input Data
-data = [
-    ("Lion", "Butterfly123!"),
-    ("Tiger", "returnofthejedi"),
-    ("Bear", "J@sonHouse"),
-    ("Wolf", "sillywombat11"),
-    ("Fox", "mi$tyHelp55"),
-    ("Otter", "January2022"),
-    ("Eagle", "P@$$w0rd"),
-    ("Shark", "Ewug4"),
-    ("Panda", "ieMuth6"),
-    ("Falcon", "covidsucks")
-]
-
 def generate_shadow_line(user, password):
-    """ create example shadow file line """
-    # Passlib handles the rounds and salt generation automatically
-    # Ubuntu 24.04 uses 656,000 rounds by default, but standard $6$ works fine for testing
+    """Create example Linux shadow file line using SHA-512 crypt."""
+    # Standard $6$ (SHA-512) hash
     shadow_hash = sha512_crypt.hash(password)
-    return f"{user.lower()}:{shadow_hash}:20386:0:99999:7:::"
+    return f"{user.split('@')[0].lower()}:{shadow_hash}:20386:0:99999:7:::"
 
 def generate_pwdump_line(user, password, uid):
-    """ create example password dump line """
-    # nthash is the library's implementation of NTLM
+    """Create example Windows PWDUMP (NTLM) line."""
     ntlm = nthash.hash(password).upper()
     lm_empty = "aad3b435b51404eeaad3b435b51404ee"
     return f"{user}:{uid}:{lm_empty}:{ntlm}:::"
 
-# Execution
-shadow_output = []
-pwdump_output = []
-start_uid = 1001
+def process_credentials(input_file):
+    shadow_output = []
+    pwdump_output = []
+    md5_list = []
+    sha1_list = []
+    sha256_list = []
+    
+    start_uid = 1001
 
-md5_list = []
-sha1_list = []
-sha256_list = []
+    try:
+        with open(input_file, mode='r', encoding='utf-8') as f:
+            # Using DictReader to handle the quoted CSV format
+            reader = csv.DictReader(f)
+            
+            print(f"--- Processing {input_file} ---")
+            for i, row in enumerate(reader):
+                user = row.get('user_id', f'user_{i}')
+                password = row.get('password', '')
 
-for i, (user, password) in enumerate(data):
-    shadow_output.append(generate_shadow_line(user, password))
-    pwdump_output.append(generate_pwdump_line(user, password, start_uid + i))
-    md5_list.append(hashlib.md5(password.encode()).hexdigest())
-    sha1_list.append(hashlib.sha1(password.encode()).hexdigest())
-    sha256_list.append(hashlib.sha256(password.encode()).hexdigest())
+                if not password:
+                    continue
 
-print("--- SHADOW FILE CONTENT ---")
-print("\n".join(shadow_output))
-print("\n--- PWDUMP FILE CONTENT ---")
-print("\n".join(pwdump_output))
-print("--- MD5 CONTENT ---")
-print("\n".join(sha1_list))
-print("\n".join(pwdump_output))
-print("--- SHA1 CONTENT ---")
-print("\n".join(sha1_list))
-print("--- SHA256 CONTENT ---")
-print("\n".join(sha256_list))
+                # Generate the various formats
+                shadow_output.append(generate_shadow_line(user, password))
+                pwdump_output.append(generate_pwdump_line(user, password, start_uid + i))
+                
+                # Raw hashes
+                encoded_pw = password.encode()
+                md5_list.append(hashlib.md5(encoded_pw).hexdigest())
+                sha1_list.append(hashlib.sha1(encoded_pw).hexdigest())
+                sha256_list.append(hashlib.sha256(encoded_pw).hexdigest())
 
-with open("md5.txt", "w") as f:
-    f.write("\n".join(md5_list))
-with open("sha1.txt", "w") as f:
-    f.write("\n".join(sha1_list))
-with open("sha256.txt", "w") as f:
-    f.write("\n".join(sha256_list))
-with open("shadow.txt", "w") as f:
-    f.write("\n".join(shadow_output))
-with open("pwdump.txt", "w") as f:
-    f.write("\n".join(pwdump_output))
+        # Write to files
+        files_to_write = {
+            "shadow.txt": shadow_output,
+            "pwdump.txt": pwdump_output,
+            "md5.txt": md5_list,
+            "sha1.txt": sha1_list,
+            "sha256.txt": sha256_list
+        }
+
+        for filename, content in files_to_write.items():
+            with open(filename, "w", encoding="utf-8") as out_f:
+                out_f.write("\n".join(content) + "\n")
+            print(f"✅ Created {filename} ({len(content)} entries)")
+
+    except FileNotFoundError:
+        print(f"Error: '{input_file}' not found.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print(f"Usage: python {os.path.basename(sys.argv[0])} <credentials.csv>")
+        sys.exit(1)
+    
+    process_credentials(sys.argv[1])
