@@ -134,15 +134,12 @@ def get_prompt(count, sector):
 ```
 
 ## Next Steps
-1. update `check_hibp.py` to check the passwords in credentials.csv against HIBP, output csv with additional column indicated if pwned
-2. ensure the script can handle throttling by google in case it happens
-3. full run 2500 personas which has 5000 user/pass combos
-4. update `create_hashdumps.py` to generate based on the `credentials.csv` file
-5. run `create_hashdumps.py` to create the hash files
-6. create script to take random selections of each hash file, create the sample files for each hash type
-7. run through password audit engine
-8. expand on CSV file with column "was cracked"
-9. take the cracked password list and analyze if there is a relation between the crack of personal vs work passwords; is there a relationship between the two?
-10. analyze top behavior tags, top tags per sector, per occupation
-11. analyze crack rate per sector vs published rates per sector; also crack rates per profession; also crack rates per behavior tag
-12. Analys of HIBP coverage, HIBP vs cracked
+1. update `create_hashdumps.py` to generate based on the `credentials.csv` file
+2. run `create_hashdumps.py` to create the hash files
+3. create script to take random selections of each hash file, create the sample files for each hash type
+4. run through password audit engine
+5. expand on CSV file with column "was cracked"
+6. take the cracked password list and analyze if there is a relation between the crack of personal vs work passwords; is there a relationship between the two?
+7. analyze top behavior tags, top tags per sector, per occupation
+8. analyze crack rate per sector vs published rates per sector; also crack rates per profession; also crack rates per behavior tag
+9. Analys of HIBP coverage, HIBP vs cracked
