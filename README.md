@@ -63,7 +63,12 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
 2. `check_hibp.py credentials.csv`
     - Checks the passwords in `credentials.csv` against HIBP
     - Outputs `checked_credentials.csv` with the enriched data
-3. `create_hashdumps.py`
+3. `create_hashdumps.py credentials.csv`
+    - Creates `shadow.txt` with `/etc/shadow` values
+    - Creates `pwdump.txt` with "pwdump" Windows hashes
+    - Creates `md5.txt` with md5 hashes
+    - Creates `sha1.txt` with sha1 hashes
+    - Creates `sha256.txt` with SHA2-256 hashes
 
 ### Start Analyzing the Data and Cracking Results
 Approaches taken:
@@ -72,6 +77,7 @@ Approaches taken:
   - had issues with creating valid JSON (had to include function to salvage valid JSON data and ignore the extraneous data)
   - temperature 0.7 is just high enough to trigger the invalid JSON, but it gave reasonable data quality (data interesting enough to study)
   - issue of receiving duplicate personas (well at least the name was duplicate) was managed by having high enough temperature and larger batch size ("CHUNK_SIZE")
+- Hashtopolis as a password auditing platform/cracking tool (running hashcat at scale)
 
 On common roots: (the base string or idea that passwords are build around)
 - Just like humans (based on data) seem to natually create clusters around certain roots, the AI model also had larger than expected clusters
@@ -86,14 +92,14 @@ On Pwned passwords:
     - SiestaTime
     - mountainhike
 - 1 (<0.1%) of the "work" passwords was in the HIBP database
-  - in part due to the median "work" password length of 19
-  - in part due to the healthy adoption of symbols
+  - in part due to the median "work" password length of 19 (minimum of 13)
+  - in part due to the healthy adoption of symbols ("3 of 4 types" policy)
 - TODO how did this look after the cracking run?
 
 Interesting but requires further study:
 - Deliberately mispelling words in passwords was not explored
 - Passphrase initialisms were not explored
-- long passphrases were not explored
+- Long passphrases were not explored
   - studying the more common long passphrases in breach dumps would be very instructive for auditing long passwords as well as creating potential initialisms for attack
 
 ## 📊 Data Format
@@ -142,4 +148,4 @@ def get_prompt(count, sector):
 6. take the cracked password list and analyze if there is a relation between the crack of personal vs work passwords; is there a relationship between the two?
 7. analyze top behavior tags, top tags per sector, per occupation
 8. analyze crack rate per sector vs published rates per sector; also crack rates per profession; also crack rates per behavior tag
-9. Analys of HIBP coverage, HIBP vs cracked
+9. analysis of HIBP coverage, HIBP vs cracked
