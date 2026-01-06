@@ -35,7 +35,7 @@ stats = {
     "total_generated": 0,
     "rejected_complexity": 0,
     "rejected_blacklist": 0,
-    "rejected_forbidden": 0, # Added counter for whitelist failures
+    "rejected_forbidden": 0,
     "rejected_duplicate_persona": 0,
     "accepted": 0
 }
@@ -47,14 +47,12 @@ client = genai.Client(api_key=API_KEY)
 
 def validate_password(pw, check_complexity=True):
     """
-    Whitelist validation.
-    check_complexity=True for Work Passwords (3-of-4 + 12 chars).
-    check_complexity=False for Personal 'Roots' (whitelist only).
+    Strict whitelist validation for both personal and work passwords.
     """
     if not pw:
         return False, "empty"
 
-    # THE IRON GATE: Strict whitelist check
+    # Whitelist check (The primary filter for emojis/Unicode)
     all_allowed = string.ascii_letters + string.digits + VALID_SYMBOLS
     if any(c not in all_allowed for c in pw):
         return False, "forbidden"
@@ -79,30 +77,28 @@ def get_prompt(count, sector):
     batch_seed = uuid.uuid4().hex[:8]
     return f"""
     Generate {count} unique personas for a study on password habits in the {sector} sector.
-    Batch Seed: {batch_seed} (Internal entropy seed).
-    RESEARCH FOCUS: Credential Reuse.
+    Batch Seed: {batch_seed}
     - Diversity: Global mix of names and backgrounds.
-    - personal_password: Raw human root (hobbies, slang, pet names). No spaces or emojis.
-    - work_password: A modification of that root (12+ chars, numbers, symbols). No spaces or emojis.
-    Return a JSON list of objects: name, occupation, personal_email, personal_password, work_lanid, work_password, behavior_tag
+    - personal_password: Raw human root (hobbies, slang, pet names).
+    - work_password: A modification of that root (12+ chars, numbers, symbols).
+    Return a JSON list: name, occupation, personal_email, personal_password, work_lanid, work_password, behavior_tag
     """
 
 def write_summary():
     with open(SUMMARY_FILE, "w") as f:
         f.write("=== PERSONA STUDY DATA SUMMARY ===\n")
         f.write(f"Timestamp: {time.ctime()}\n")
-        f.write(f"Total Accepted Personas: {stats['accepted']}\n")
-        f.write(f"Total API Attempts: {stats['total_generated']}\n")
-        f.write(f"Duplicate Persona Rejections: {stats['rejected_duplicate_persona']}\n")
-        f.write(f"Forbidden Char Rejections: {stats.get('rejected_forbidden', 0)}\n\n")
+        f.write(f"Total Accepted: {stats['accepted']}\n")
+        f.write(f"Duplicate Rejections: {stats['rejected_duplicate_persona']}\n")
+        f.write(f"Forbidden (Emoji) Rejections: {stats['rejected_forbidden']}\n\n")
 
-        f.write("--- TOP 10 REUSED PERSONAL ROOTS ---\n")
+        f.write("--- TOP 10 PERSONAL ROOTS ---\n")
         for pw, count in personal_pw_registry.most_common(10):
-            f.write(f"{pw}: {count} occurrences\n")
+            f.write(f"{pw}: {count}\n")
 
-        f.write("\n--- TOP 10 REUSED WORK PASSWORDS ---\n")
+        f.write("\n--- TOP 10 WORK PASSWORDS ---\n")
         for pw, count in work_pw_registry.most_common(10):
-            f.write(f"{pw}: {count} occurrences\n")
+            f.write(f"{pw}: {count}\n")
 
 def run_study():
     target_sector_override = sys.argv[1] if len(sys.argv) > 1 else None
@@ -119,8 +115,7 @@ def run_study():
                     seen_ids.add(p['work_lanid'].lower())
                     personal_pw_registry[p['personal_password']] += 1
                     work_pw_registry[p['work_password']] += 1
-        except Exception as e:
-            print(f"Note: Error loading state: {e}")
+        except Exception: pass
 
     while len(all_personas) < TARGET_COUNT:
         sector = target_sector_override if target_sector_override else SECTORS[len(all_personas) % len(SECTORS)]
@@ -130,11 +125,11 @@ def run_study():
             response = client.models.generate_content(
                 model="gemini-2.0-flash",
                 contents=get_prompt(request_count, sector),
-                config={'response_mime_type': 'application/json', 'temperature': 1.4, 'top_k': 100, 'top_p': 0.95}
+                config={'response_mime_type': 'application/json', 'temperature': 1.4}
             )
             batch_data = json.loads(response.text)
             if isinstance(batch_data, dict):
-                batch_data = next(iter(batch_data.values())) if isinstance(next(iter(batch_data.values())), list) else []
+                batch_data = next(iter(batch_data.values()))
 
             valid_batch = []
             for p in batch_data:
@@ -146,12 +141,10 @@ def run_study():
                     stats["rejected_duplicate_persona"] += 1
                     continue
 
-                # VALIDATE PERSONAL (No complexity check, just whitelist)
-                is_p_valid, p_reason = validate_password(p.get('personal_password', ''), check_complexity=False)
-                # VALIDATE WORK (Full complexity check + whitelist)
-                is_w_valid, w_reason = validate_password(p.get('work_password', ''), check_complexity=True)
+                is_p_v, p_r = validate_password(p.get('personal_password', ''), check_complexity=False)
+                is_w_v, w_r = validate_password(p.get('work_password', ''), check_complexity=True)
 
-                if is_p_valid and is_w_valid:
+                if is_p_v and is_w_v:
                     p['sector'] = sector
                     valid_batch.append(p)
                     seen_ids.add(p_email)
@@ -160,7 +153,7 @@ def run_study():
                     personal_pw_registry[p['personal_password']] += 1
                     work_pw_registry[p['work_password']] += 1
                 else:
-                    reason = p_reason if not is_p_valid else w_reason
+                    reason = p_r if not is_p_v else w_r
                     if reason == "forbidden":
                         stats["rejected_forbidden"] += 1
                     elif reason == "complexity":
@@ -169,8 +162,7 @@ def run_study():
                         stats["rejected_blacklist"] += 1
 
             all_personas.extend(valid_batch)
-            with open(OUTPUT_JSON, 'w') as f:
-                json.dump(all_personas, f, indent=4)
+            with open(OUTPUT_JSON, 'w') as f: json.dump(all_personas, f, indent=4)
 
             file_exists = os.path.exists(OUTPUT_CSV) and os.path.getsize(OUTPUT_CSV) > 0
             with open(OUTPUT_CSV, 'a', newline='') as f:
@@ -182,13 +174,16 @@ def run_study():
                     writer.writerow([p['work_lanid'], p['work_password']])
 
             write_summary()
+
             print(f"\n--- Progress: {len(all_personas)}/{TARGET_COUNT} [{sector}] ---")
-            print(f"  Forbidden (Emoji) Hits: {stats['rejected_forbidden']}")
+            print(f"  Identity Saturation (Dupes): {stats['rejected_duplicate_persona']}")
+            print(f"  Forbidden (Emoji) Hits:      {stats['rejected_forbidden']}")
+            print(f"  Unique Personal Roots:       {len(personal_pw_registry)}/{len(all_personas)}")
+            print(f"  Unique Work Passwords:       {len(work_pw_registry)}/{len(all_personas)}")
 
         except Exception as e:
             print(f"❌ Error: {e}")
             time.sleep(1)
-            continue
 
 if __name__ == "__main__":
     run_study()
