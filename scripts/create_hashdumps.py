@@ -3,10 +3,10 @@
 Generate shadow, pwdump, and raw hash files from an input CSV.
 Required: pip install passlib
 """
-import hashlib
+import os
 import csv
 import sys
-import os
+import hashlib
 from passlib.hash import sha512_crypt, nthash
 
 def generate_shadow_line(user, password):
@@ -22,19 +22,20 @@ def generate_pwdump_line(user, password, uid):
     return f"{user}:{uid}:{lm_empty}:{ntlm}:::"
 
 def process_credentials(input_file):
+    """ main loop to process credentials """
     shadow_output = []
     pwdump_output = []
     md5_list = []
     sha1_list = []
     sha256_list = []
-    
+
     start_uid = 1001
 
     try:
         with open(input_file, mode='r', encoding='utf-8') as f:
             # Using DictReader to handle the quoted CSV format
             reader = csv.DictReader(f)
-            
+
             print(f"--- Processing {input_file} ---")
             for i, row in enumerate(reader):
                 user = row.get('user_id', f'user_{i}')
@@ -46,7 +47,7 @@ def process_credentials(input_file):
                 # Generate the various formats
                 shadow_output.append(generate_shadow_line(user, password))
                 pwdump_output.append(generate_pwdump_line(user, password, start_uid + i))
-                
+
                 # Raw hashes
                 encoded_pw = password.encode()
                 md5_list.append(hashlib.md5(encoded_pw).hexdigest())
@@ -76,5 +77,5 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print(f"Usage: python {os.path.basename(sys.argv[0])} <credentials.csv>")
         sys.exit(1)
-    
+
     process_credentials(sys.argv[1])
