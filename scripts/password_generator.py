@@ -35,7 +35,7 @@ stats = {
     "total_generated": 0,
     "rejected_complexity": 0,
     "rejected_blocklist": 0,
-    "rejected_forbidden": 0,
+    "rejected_pattern": 0,  # Renamed from forbidden
     "rejected_duplicate_persona": 0,
     "accepted": 0
 }
@@ -47,15 +47,16 @@ client = genai.Client(api_key=API_KEY)
 
 def validate_password(pw, check_complexity=True):
     """
-    Strict whitelist validation for both personal and work passwords.
+    Pattern-based character filter.
+    Rejects: Emojis, Unicode, and Spaces (since space is not in VALID_SYMBOLS).
     """
     if not pw:
         return False, "empty"
 
-    # Whitelist check (The primary filter for emojis/Unicode)
+    # Pattern check (The filter for characters outside your allow-list)
     all_allowed = string.ascii_letters + string.digits + VALID_SYMBOLS
     if any(c not in all_allowed for c in pw):
-        return False, "forbidden"
+        return False, "pattern"
 
     if check_complexity:
         if len(pw) < 12:
@@ -79,18 +80,20 @@ def get_prompt(count, sector):
     Generate {count} unique personas for a study on password habits in the {sector} sector.
     Batch Seed: {batch_seed}
     - Diversity: Global mix of names and backgrounds.
-    - personal_password: Raw human root (hobbies, slang, pet names).
-    - work_password: A modification of that root (12+ chars, numbers, symbols).
+    - personal_password: Raw human root (hobbies, slang, pet names). Single word, no spaces/emojis.
+    - work_password: A modification of that root (12+ chars, numbers, symbols). No spaces/emojis.
     Return a JSON list: name, occupation, personal_email, personal_password, work_lanid, work_password, behavior_tag
     """
 
 def write_summary():
     with open(SUMMARY_FILE, "w") as f:
-        f.write("=== PERSONA STUDY DATA SUMMARY ===\n")
-        f.write(f"Timestamp: {time.ctime()}\n")
-        f.write(f"Total Accepted: {stats['accepted']}\n")
-        f.write(f"Duplicate Rejections: {stats['rejected_duplicate_persona']}\n")
-        f.write(f"Forbidden (Emoji) Rejections: {stats['rejected_forbidden']}\n\n")
+        f.write(f"=== PERSONA STUDY DATA SUMMARY | {time.ctime()} ===\n")
+        f.write(f"Total Accepted: {stats['accepted']} / {TARGET_COUNT}\n")
+        f.write(f"Total API Attempts: {stats['total_generated']}\n")
+        f.write(f"Rejection - Duplicate:  {stats['rejected_duplicate_persona']}\n")
+        f.write(f"Rejection - Pattern:    {stats['rejected_pattern']} (Emoji/Spaces/Unallowed Symbols)\n")
+        f.write(f"Rejection - Complexity: {stats['rejected_complexity']}\n")
+        f.write(f"Rejection - Blocklist:  {stats['rejected_blocklist']}\n\n")
 
         f.write("--- TOP 10 PERSONAL ROOTS ---\n")
         for pw, count in personal_pw_registry.most_common(10):
@@ -141,6 +144,7 @@ def run_study():
                     stats["rejected_duplicate_persona"] += 1
                     continue
 
+                # Re-roll check: Validate Personal (Pattern only) and Work (Pattern + Complexity)
                 is_p_v, p_r = validate_password(p.get('personal_password', ''), check_complexity=False)
                 is_w_v, w_r = validate_password(p.get('work_password', ''), check_complexity=True)
 
@@ -153,9 +157,10 @@ def run_study():
                     personal_pw_registry[p['personal_password']] += 1
                     work_pw_registry[p['work_password']] += 1
                 else:
+                    # Log the rejection reason (Personal failures prioritized in reporting)
                     reason = p_r if not is_p_v else w_r
-                    if reason == "forbidden":
-                        stats["rejected_forbidden"] += 1
+                    if reason == "pattern":
+                        stats["rejected_pattern"] += 1
                     elif reason == "complexity":
                         stats["rejected_complexity"] += 1
                     elif reason == "blocklist":
@@ -175,14 +180,15 @@ def run_study():
 
             write_summary()
 
-            print(f"\n--- Progress: {len(all_personas)}/{TARGET_COUNT} [{sector}] ---")
-            print(f"  Identity Saturation (Dupes): {stats['rejected_duplicate_persona']}")
-            print(f"  Forbidden (Emoji) Hits:      {stats['rejected_forbidden']}")
-            print(f"  Unique Personal Roots:       {len(personal_pw_registry)}/{len(all_personas)}")
-            print(f"  Unique Work Passwords:       {len(work_pw_registry)}/{len(all_personas)}")
+            # Enhanced Terminal Reporting
+            print(f"\n--- Progress: {len(all_personas)}/{TARGET_COUNT} Sector: [{sector}] ---")
+            print(f"  [REJECTIONS] Pattern: {stats['rejected_pattern']} | Complex: {stats['rejected_complexity']} | Block: {stats['rejected_blocklist']}")
+            print(f"  [IDENTITY]  Duplicates Found: {stats['rejected_duplicate_persona']}")
+            print(f"  [REUSE]     Personal Roots: {len(personal_pw_registry)}/{len(all_personas)} Unique")
+            print(f"  [COLLISION] Work Passwords: {len(work_pw_registry)}/{len(all_personas)} Unique")
 
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"❌ API/Parse Error: {e}")
             time.sleep(1)
 
 if __name__ == "__main__":
