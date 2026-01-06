@@ -48,6 +48,9 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
 
 ### Start Creating Data
 1. `password_generator.py`
+    - Without arguments, bases personas on a rotating list of "Sectors" of the workforce
+    - Optionally provide a sector name to study it exclusively
+        - Ex. `python3 password_generator "Gig Economy"`
     - creates `personas.json`
     - creates `credentials.csv`
     - creates `data_summary.txt`
@@ -55,12 +58,31 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
         - `watch -d 'cat data_summary.txt;'`
     - Note as the Gemini model struggles to come up with more unique personas
         - Duplicate personas: same name, rejected by script
-        - Non-unique personal passwords: allowed by script, note similar common rules in actual password dumps
+        - Non-unique personal passwords: allowed by script, note similar common patterns in actual password dumps
         - Non-unique work passwords: allowed by script, note it's less common than for personal passwords; if this starts creeping up, the model has got stuck in a loop doing the same transformations every time
-2. check_hibp.py
-3. create_hashdumps.py
+2. `check_hibp.py`
+    - Checks the passwords in `credentials.csv` against HIBP
+4. create_hashdumps.py
 
 ### Start Analyzing the Data and Cracking Results
+Approaches taken:
+- Gemini 2.5 Flash
+  - performed much better in data quality over Gemini 2.0 Flash
+  - had issues with creating valid JSON (had to include function to salvage valid JSON data and ignore the extraneous data)
+  - temperature 0.7 is just high enough to trigger the invalid JSON, but it gave reasonable data quality (data interesting enough to study)
+  - issue of receiving duplicate personas (well at least the name was duplicate) was managed by having high enough temperature and larger batch size ("CHUNK_SIZE")
+
+On common roots: (the base string or idea that passwords are build around)
+- Just like humans (based on data) seem to natually create clusters around certain roots, the AI model also had larger than expected clusters
+- The process to expand to a more "work password" was complex enough that we there were only a 4 passwords that appeared more than once
+- Identifing common roots in real life password dumps could greatly improve password guessing
+- Understanding the real life personal behind a password can be very instructive in password guessing
+
+Interesting but requires further study:
+- Deliberately mispelling words in passwords was not explored
+- Passphrase initialisms were not explored
+- long passphrases were not explored
+  - studying the more common long passphrases in breach dumps would be very instructive for auditing long passwords as well as creating potential initialisms for attack
 
 ## 📊 Data Format
 The generated study data is saved in JSON format with the following schema:
