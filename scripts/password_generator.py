@@ -19,8 +19,8 @@ SUMMARY_FILE = "data_summary.txt"
 SECTORS = ["Banking", "Healthcare", "Construction", "Education", "Retail", "Tech"]
 
 # --- FEATURES ---
-ENABLE_BLACKLIST = True
-BLACKLIST = [
+ENABLE_BLOCKLIST = True
+BLOCKLIST = [
     "password", "12345678", "qwertyuiop", "password123", "password123!",
     "admin123", "welcome1", "welcome1!", "changeme", "sunshine",
     "football", "p@ssword", "123456789", "iloveyou", "monkey",
@@ -34,7 +34,7 @@ VALID_SYMBOLS = "!@#$%^&*()_+-=[]{}|;:,.<>?"
 stats = {
     "total_generated": 0,
     "rejected_complexity": 0,
-    "rejected_blacklist": 0,
+    "rejected_blocklist": 0,
     "rejected_forbidden": 0,
     "rejected_duplicate_persona": 0,
     "accepted": 0
@@ -68,8 +68,8 @@ def validate_password(pw, check_complexity=True):
         if sum([has_low, has_up, has_num, has_sym]) < 3:
             return False, "complexity"
 
-        if ENABLE_BLACKLIST and pw.lower() in [b.lower() for b in BLACKLIST]:
-            return False, "blacklist"
+        if ENABLE_BLOCKLIST and pw.lower() in [b.lower() for b in BLOCKLIST]:
+            return False, "blocklist"
 
     return True, None
 
@@ -158,8 +158,8 @@ def run_study():
                         stats["rejected_forbidden"] += 1
                     elif reason == "complexity":
                         stats["rejected_complexity"] += 1
-                    elif reason == "blacklist":
-                        stats["rejected_blacklist"] += 1
+                    elif reason == "blocklist":
+                        stats["rejected_blocklist"] += 1
 
             all_personas.extend(valid_batch)
             with open(OUTPUT_JSON, 'w') as f: json.dump(all_personas, f, indent=4)
