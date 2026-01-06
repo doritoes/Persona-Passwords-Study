@@ -87,7 +87,7 @@ def process_csv(input_file):
             percentage = (pwned_count / total_count) * 100
             print(f"Total Passwords Checked: {total_count}")
             print(f"Pwned Passwords Found:  {pwned_count}")
-            print(f"Sector Compromise Rate: {percentage:.2f}%")
+            print(f"Compromise Rate: {percentage:.2f}%")
 
             if pwned_list:
                 print("\nList of Compromised Passwords:")
