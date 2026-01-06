@@ -1,0 +1,29 @@
+=== PERSONA STUDY DATA SUMMARY ===
+Timestamp: Mon Jan  5 18:50:52 2026
+Total Accepted Personas: 2500
+Total API Attempts: 6546
+Duplicate Persona Rejections: 3617
+
+--- TOP 10 REUSED PERSONAL ROOTS ---
+sunshineDaisy: 27 occurrences
+parisjetaime: 23 occurrences
+sunshine: 21 occurrences
+sunsetlover: 18 occurrences
+cherryblossom: 16 occurrences
+desertrose: 13 occurrences
+oktoberfest: 12 occurrences
+lavieenrose: 11 occurrences
+babushka: 11 occurrences
+dancingqueen: 11 occurrences
+
+--- TOP 10 REUSED WORK PASSWORDS ---
+SunsetL0v3r!: 6 occurrences
+Sakur@Bl0ss0m!: 4 occurrences
+Dr@gonD@nce!: 4 occurrences
+0kt0berf3st!: 3 occurrences
+W1nt3rSn0wflake#: 3 occurrences
+Sh@mr0ckLuck!: 3 occurrences
+SunsetL0v3r!23: 3 occurrences
+Mids0mmerN1ght!: 3 occurrences
+B@bushkaD0ll!: 3 occurrences
+Sunshine@123!: 2 occurrences
