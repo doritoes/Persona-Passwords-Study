@@ -1,4 +1,4 @@
-"" generate "human-like" passwords for study - Hardened ASCII Version """
+""" generate "human-like" passwords for study """
 import os
 import csv
 import sys
@@ -18,11 +18,7 @@ OUTPUT_CSV = "credentials.csv"
 SUMMARY_FILE = "data_summary.txt"
 SECTORS = ["Banking", "Healthcare", "Construction", "Education", "Retail", "Tech"]
 
-# --- RIGID CHARACTER CONSTRAINTS ---
-VALID_SYMBOLS = "!@#$%^&*()_+-=[]{}|;:,.<>?"
-# Only allows A-Z, a-z, 0-9, and specific symbols. Strictly No Emojis/Unicode.
-ALLOWED_CHARS = set(string.ascii_letters + string.digits + VALID_SYMBOLS)
-
+# --- FEATURES ---
 ENABLE_BLACKLIST = True
 BLACKLIST = [
     "password", "12345678", "qwertyuiop", "password123", "password123!",
@@ -32,12 +28,14 @@ BLACKLIST = [
     "winter2026", "autumn2026", "password!", "admin!123", "adminadmin"
 ]
 
+VALID_SYMBOLS = "!@#$%^&*()_+-=[]{}|;:,.<>?"
+
 # --- REPORTING COUNTERS ---
 stats = {
     "total_generated": 0,
     "rejected_complexity": 0,
     "rejected_blacklist": 0,
-    "rejected_forbidden": 0,
+    "rejected_forbidden": 0, # Added counter for whitelist failures
     "rejected_duplicate_persona": 0,
     "accepted": 0
 }
@@ -47,75 +45,70 @@ work_pw_registry = Counter()
 
 client = genai.Client(api_key=API_KEY)
 
-def validate_password(pw):
-    """ Strict white-list validation to prevent emojis and non-standard input """
-    if not pw or len(pw) < 12:
-        return False, "complexity"
+def validate_password(pw, check_complexity=True):
+    """
+    Whitelist validation.
+    check_complexity=True for Work Passwords (3-of-4 + 12 chars).
+    check_complexity=False for Personal 'Roots' (whitelist only).
+    """
+    if not pw:
+        return False, "empty"
 
-    # KILL-SWITCH: If any char is not in the allowed ASCII set, reject immediately
-    if not all(c in ALLOWED_CHARS for c in pw):
+    # THE IRON GATE: Strict whitelist check
+    all_allowed = string.ascii_letters + string.digits + VALID_SYMBOLS
+    if any(c not in all_allowed for c in pw):
         return False, "forbidden"
 
-    has_low = any(c in string.ascii_lowercase for c in pw)
-    has_up  = any(c in string.ascii_uppercase for c in pw)
-    has_num = any(c in string.digits for c in pw)
-    has_sym = any(c in VALID_SYMBOLS for c in pw)
+    if check_complexity:
+        if len(pw) < 12:
+            return False, "complexity"
+        has_low = any(c in string.ascii_lowercase for c in pw)
+        has_up  = any(c in string.ascii_uppercase for c in pw)
+        has_num = any(c in string.digits for c in pw)
+        has_sym = any(c in VALID_SYMBOLS for c in pw)
 
-    if sum([has_low, has_up, has_num, has_sym]) < 3:
-        return False, "complexity"
+        if sum([has_low, has_up, has_num, has_sym]) < 3:
+            return False, "complexity"
 
-    if ENABLE_BLACKLIST and pw.lower() in [b.lower() for b in BLACKLIST]:
-        return False, "blacklist"
+        if ENABLE_BLACKLIST and pw.lower() in [b.lower() for b in BLACKLIST]:
+            return False, "blacklist"
 
     return True, None
 
 def get_prompt(count, sector):
-    """ create seeded prompt """
     batch_seed = uuid.uuid4().hex[:8]
     return f"""
     Generate {count} unique personas for a study on password habits in the {sector} sector.
     Batch Seed: {batch_seed} (Internal entropy seed).
     RESEARCH FOCUS: Credential Reuse.
     - Diversity: Global mix of names and backgrounds.
-    - personal_password: Raw human root (hobbies, slang, pet names).
-    - work_password: A modification of that root (12+ chars, numbers, symbols).
+    - personal_password: Raw human root (hobbies, slang, pet names). No spaces or emojis.
+    - work_password: A modification of that root (12+ chars, numbers, symbols). No spaces or emojis.
     Return a JSON list of objects: name, occupation, personal_email, personal_password, work_lanid, work_password, behavior_tag
     """
 
-def write_files(all_personas):
-    """ Refreshes all outputs. Uses 'w' to ensure clean CSV files on every batch. """
-    # 1. JSON Master State
-    with open(OUTPUT_JSON, 'w') as f:
-        json.dump(all_personas, f, indent=4)
-
-    # 2. Credentials CSV (Clean overwrite)
-    with open(OUTPUT_CSV, 'w', newline='') as f:
-        writer = csv.writer(f, quoting=csv.QUOTE_ALL)
-        writer.writerow(["user_id", "password"])
-        for p in all_personas:
-            writer.writerow([p['personal_email'], p['personal_password']])
-            writer.writerow([p['work_lanid'], p['work_password']])
-
-    # 3. Summary Report
+def write_summary():
     with open(SUMMARY_FILE, "w") as f:
-        f.write(f"=== STUDY SUMMARY | {time.ctime()} ===\n")
-        f.write(f"Accepted: {stats['accepted']} | Attempts: {stats['total_generated']}\n")
-        f.write(f"Rejections: ID Dupe: {stats['rejected_duplicate_persona']}, Forbidden/Emoji: {stats['rejected_forbidden']}, Complexity: {stats['rejected_complexity']}, BL: {stats['rejected_blacklist']}\n\n")
+        f.write("=== PERSONA STUDY DATA SUMMARY ===\n")
+        f.write(f"Timestamp: {time.ctime()}\n")
+        f.write(f"Total Accepted Personas: {stats['accepted']}\n")
+        f.write(f"Total API Attempts: {stats['total_generated']}\n")
+        f.write(f"Duplicate Persona Rejections: {stats['rejected_duplicate_persona']}\n")
+        f.write(f"Forbidden Char Rejections: {stats.get('rejected_forbidden', 0)}\n\n")
 
-        f.write("--- TOP 10 PERSONAL ROOTS ---\n")
+        f.write("--- TOP 10 REUSED PERSONAL ROOTS ---\n")
         for pw, count in personal_pw_registry.most_common(10):
-            f.write(f"{pw}: {count}\n")
+            f.write(f"{pw}: {count} occurrences\n")
 
-        f.write("\n--- TOP 10 WORK PASSWORDS ---\n")
+        f.write("\n--- TOP 10 REUSED WORK PASSWORDS ---\n")
         for pw, count in work_pw_registry.most_common(10):
-            f.write(f"{pw}: {count}\n")
+            f.write(f"{pw}: {count} occurrences\n")
 
 def run_study():
     target_sector_override = sys.argv[1] if len(sys.argv) > 1 else None
     all_personas = []
     seen_ids = set()
 
-    # Recovery logic if script is restarted
     if os.path.exists(OUTPUT_JSON):
         try:
             with open(OUTPUT_JSON, 'r') as f:
@@ -126,21 +119,22 @@ def run_study():
                     seen_ids.add(p['work_lanid'].lower())
                     personal_pw_registry[p['personal_password']] += 1
                     work_pw_registry[p['work_password']] += 1
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Note: Error loading state: {e}")
 
     while len(all_personas) < TARGET_COUNT:
         sector = target_sector_override if target_sector_override else SECTORS[len(all_personas) % len(SECTORS)]
+        request_count = min(CHUNK_SIZE, TARGET_COUNT - len(all_personas))
 
         try:
             response = client.models.generate_content(
                 model="gemini-2.0-flash",
-                contents=get_prompt(CHUNK_SIZE, sector),
-                config={'response_mime_type': 'application/json', 'temperature': 1.4}
+                contents=get_prompt(request_count, sector),
+                config={'response_mime_type': 'application/json', 'temperature': 1.4, 'top_k': 100, 'top_p': 0.95}
             )
             batch_data = json.loads(response.text)
             if isinstance(batch_data, dict):
-                batch_data = next(iter(batch_data.values()))
+                batch_data = next(iter(batch_data.values())) if isinstance(next(iter(batch_data.values())), list) else []
 
             valid_batch = []
             for p in batch_data:
@@ -152,9 +146,10 @@ def run_study():
                     stats["rejected_duplicate_persona"] += 1
                     continue
 
-                # Validate BOTH to ensure no emojis in either column
-                is_p_valid, p_reason = validate_password(p.get('personal_password', ''))
-                is_w_valid, w_reason = validate_password(p.get('work_password', ''))
+                # VALIDATE PERSONAL (No complexity check, just whitelist)
+                is_p_valid, p_reason = validate_password(p.get('personal_password', ''), check_complexity=False)
+                # VALIDATE WORK (Full complexity check + whitelist)
+                is_w_valid, w_reason = validate_password(p.get('work_password', ''), check_complexity=True)
 
                 if is_p_valid and is_w_valid:
                     p['sector'] = sector
@@ -174,13 +169,26 @@ def run_study():
                         stats["rejected_blacklist"] += 1
 
             all_personas.extend(valid_batch)
-            write_files(all_personas)
+            with open(OUTPUT_JSON, 'w') as f:
+                json.dump(all_personas, f, indent=4)
 
-            print(f"[{sector}] Progress: {len(all_personas)}/{TARGET_COUNT} | Rejected Forbidden: {stats['rejected_forbidden']}")
+            file_exists = os.path.exists(OUTPUT_CSV) and os.path.getsize(OUTPUT_CSV) > 0
+            with open(OUTPUT_CSV, 'a', newline='') as f:
+                writer = csv.writer(f, quoting=csv.QUOTE_ALL)
+                if not file_exists:
+                    writer.writerow(["user_id", "password"])
+                for p in valid_batch:
+                    writer.writerow([p['personal_email'], p['personal_password']])
+                    writer.writerow([p['work_lanid'], p['work_password']])
+
+            write_summary()
+            print(f"\n--- Progress: {len(all_personas)}/{TARGET_COUNT} [{sector}] ---")
+            print(f"  Forbidden (Emoji) Hits: {stats['rejected_forbidden']}")
 
         except Exception as e:
             print(f"❌ Error: {e}")
-            time.sleep(2)
+            time.sleep(1)
+            continue
 
 if __name__ == "__main__":
     run_study()
