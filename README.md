@@ -148,12 +148,10 @@ def get_prompt(count, sector):
 ```
 
 ## Next Steps
-1. update `create_hashdumps.py` to generate based on the `credentials.csv` file
-2. run `create_hashdumps.py` to create the hash files
-3. create script to take random selections of each hash file, create the sample files for each hash type
-4. run through password audit engine
-5. expand on CSV file with column "was cracked"
-6. take the cracked password list and analyze if there is a relation between the crack of personal vs work passwords; is there a relationship between the two?
-7. analyze top behavior tags, top tags per sector, per occupation
-8. analyze crack rate per sector vs published rates per sector; also crack rates per profession; also crack rates per behavior tag
-9. analysis of HIBP coverage, HIBP vs cracked
+1. run through password audit engine
+2. enrich the XLSX spreadsheet to indicated password cracked
+3. Analysis
+    - take the cracked password list and analyze if there is a relation between the crack of personal vs work passwords; is there a relationship between the two?
+    - analyze top behavior tags, top tags per sector, per occupation
+    - analyze crack rate per sector vs published rates per sector; also crack rates per profession; also crack rates per behavior tag
+    - analysis of HIBP coverage, HIBP vs cracked
