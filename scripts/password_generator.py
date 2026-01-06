@@ -13,7 +13,7 @@ from config import API_KEY
 
 # --- SETTINGS ---
 TARGET_COUNT = 2500
-CHUNK_SIZE = 15
+CHUNK_SIZE = 10 # smaller chunk size because of JSON failure at high temperature, down from 15
 OUTPUT_JSON = "personas.json"
 OUTPUT_CSV = "credentials.csv"
 SUMMARY_FILE = "data_summary.txt"
@@ -80,7 +80,7 @@ def get_prompt(count, sector):
     RESEARCH FOCUS: Credential Reuse.
     - Diversity: Global mix of names and backgrounds. Passwords that are laborious to type are avoided.
     - personal_password: Raw human root (hobbies, slang, pet names, meaningful numbers).
-    - work_password: A modification of that root (12+ chars, numbers, symbols).
+    - work_password: A modification of that root (12+ chars, numbers, symbols) expanding on it.
     Return a JSON list: name, occupation, personal_email, personal_password, work_lanid, work_password, behavior_tag
     """
 
@@ -127,7 +127,7 @@ def run_study():
         request_count = min(CHUNK_SIZE, TARGET_COUNT - len(all_personas))
 
         try:
-            # Explicitly targeting 2.5 Flash
+            # Explicitly targeting 2.5 Flash, high temperature that sometimes fails JSON outout
             response = client.models.generate_content(
                 model="gemini-2.5-flash",
                 contents=get_prompt(request_count, sector),
