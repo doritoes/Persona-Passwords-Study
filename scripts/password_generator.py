@@ -1,4 +1,4 @@
-""" generate "human-like" passwords for study """
+""" generate "human-like" passwords for study - Gemini 2.5 Stable """
 import os
 import csv
 import sys
@@ -8,6 +8,7 @@ import uuid
 import string
 from collections import Counter
 from google import genai
+from google.genai import types  # Explicit types for 2.5 config
 from config import API_KEY
 
 # --- SETTINGS ---
@@ -35,7 +36,7 @@ stats = {
     "total_generated": 0,
     "rejected_complexity": 0,
     "rejected_blocklist": 0,
-    "rejected_pattern": 0,  # Renamed from forbidden
+    "rejected_pattern": 0,
     "rejected_duplicate_persona": 0,
     "accepted": 0
 }
@@ -46,14 +47,10 @@ work_pw_registry = Counter()
 client = genai.Client(api_key=API_KEY)
 
 def validate_password(pw, check_complexity=True):
-    """
-    Pattern-based character filter.
-    Rejects: Emojis, Unicode, and Spaces (since space is not in VALID_SYMBOLS).
-    """
+    """ check if the password matches character set and complexity rules """
     if not pw:
         return False, "empty"
 
-    # Pattern check (The filter for characters outside your allow-list)
     all_allowed = string.ascii_letters + string.digits + VALID_SYMBOLS
     if any(c not in all_allowed for c in pw):
         return False, "pattern"
@@ -75,17 +72,20 @@ def validate_password(pw, check_complexity=True):
     return True, None
 
 def get_prompt(count, sector):
+    """ generate the seeded prompt for the AI model """
     batch_seed = uuid.uuid4().hex[:8]
     return f"""
-    Generate {count} unique personas for a study on password habits in the {sector} sector.
     Batch Seed: {batch_seed}
-    - Diversity: Global mix of names and backgrounds.
-    - personal_password: Raw human root (hobbies, slang, pet names). Single word, no spaces/emojis.
-    - work_password: A modification of that root (12+ chars, numbers, symbols). No spaces/emojis.
+    As a data generator, generate {count} unique personas for a study on password habits in the {sector} sector.
+    RESEARCH FOCUS: Credential Reuse.
+    - Diversity: Global mix of names and backgrounds. Passwords that are laborious to type are avoided.
+    - personal_password: Raw human root (hobbies, slang, pet names, meaningful numbers).
+    - work_password: A modification of that root (12+ chars, numbers, symbols).
     Return a JSON list: name, occupation, personal_email, personal_password, work_lanid, work_password, behavior_tag
     """
 
 def write_summary():
+    """ save a progress summary file """
     with open(SUMMARY_FILE, "w") as f:
         f.write(f"=== PERSONA STUDY DATA SUMMARY | {time.ctime()} ===\n")
         f.write(f"Total Accepted: {stats['accepted']} / {TARGET_COUNT}\n")
@@ -104,6 +104,7 @@ def write_summary():
             f.write(f"{pw}: {count}\n")
 
 def run_study():
+    """ main generation loop """
     target_sector_override = sys.argv[1] if len(sys.argv) > 1 else None
     all_personas = []
     seen_ids = set()
@@ -118,19 +119,33 @@ def run_study():
                     seen_ids.add(p['work_lanid'].lower())
                     personal_pw_registry[p['personal_password']] += 1
                     work_pw_registry[p['work_password']] += 1
-        except Exception: pass
+        except Exception:
+            pass
 
     while len(all_personas) < TARGET_COUNT:
         sector = target_sector_override if target_sector_override else SECTORS[len(all_personas) % len(SECTORS)]
         request_count = min(CHUNK_SIZE, TARGET_COUNT - len(all_personas))
 
         try:
+            # Explicitly targeting 2.5 Flash
             response = client.models.generate_content(
-                model="gemini-2.0-flash",
+                model="gemini-2.5-flash",
                 contents=get_prompt(request_count, sector),
-                config={'response_mime_type': 'application/json', 'temperature': 1.4}
+                config=types.GenerateContentConfig(
+                    response_mime_type='application/json',
+                    temperature=0.7
+                )
             )
-            batch_data = json.loads(response.text)
+
+            # Robust Cleaning for 2.5 API Responses
+            raw_text = response.text.strip()
+            if raw_text.startswith("```"):
+                # Strips ```json and trailing ```
+                raw_text = raw_text.split("```")[1].replace("json", "", 1).strip()
+
+            batch_data = json.loads(raw_text)
+
+            # Ensure we have a list (some versions wrap in a dict)
             if isinstance(batch_data, dict):
                 batch_data = next(iter(batch_data.values()))
 
@@ -144,7 +159,6 @@ def run_study():
                     stats["rejected_duplicate_persona"] += 1
                     continue
 
-                # Re-roll check: Validate Personal (Pattern only) and Work (Pattern + Complexity)
                 is_p_v, p_r = validate_password(p.get('personal_password', ''), check_complexity=False)
                 is_w_v, w_r = validate_password(p.get('work_password', ''), check_complexity=True)
 
@@ -157,7 +171,6 @@ def run_study():
                     personal_pw_registry[p['personal_password']] += 1
                     work_pw_registry[p['work_password']] += 1
                 else:
-                    # Log the rejection reason (Personal failures prioritized in reporting)
                     reason = p_r if not is_p_v else w_r
                     if reason == "pattern":
                         stats["rejected_pattern"] += 1
@@ -180,16 +193,15 @@ def run_study():
 
             write_summary()
 
-            # Enhanced Terminal Reporting
             print(f"\n--- Progress: {len(all_personas)}/{TARGET_COUNT} Sector: [{sector}] ---")
             print(f"  [REJECTIONS] Pattern: {stats['rejected_pattern']} | Complex: {stats['rejected_complexity']} | Block: {stats['rejected_blocklist']}")
-            print(f"  [IDENTITY]  Duplicates Found: {stats['rejected_duplicate_persona']}")
-            print(f"  [REUSE]     Personal Roots: {len(personal_pw_registry)}/{len(all_personas)} Unique")
-            print(f"  [COLLISION] Work Passwords: {len(work_pw_registry)}/{len(all_personas)} Unique")
+            print(f"  [IDENTITY]   Duplicates: {stats['rejected_duplicate_persona']}")
+            print(f"  [ENTROPY]    Personal Unique: {len(personal_pw_registry)}/{len(all_personas)}")
 
         except Exception as e:
             print(f"❌ API/Parse Error: {e}")
-            time.sleep(1)
+            print(response.text) # debug
+            time.sleep(2)
 
 if __name__ == "__main__":
     run_study()
