@@ -60,9 +60,10 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
         - Duplicate personas: same name, rejected by script
         - Non-unique personal passwords: allowed by script, note similar common patterns in actual password dumps
         - Non-unique work passwords: allowed by script, note it's less common than for personal passwords; if this starts creeping up, the model has got stuck in a loop doing the same transformations every time
-2. `check_hibp.py`
+2. `check_hibp.py credentials.csv`
     - Checks the passwords in `credentials.csv` against HIBP
-4. create_hashdumps.py
+    - Outputs `checked_credentials.csv` with the enriched data
+3. `create_hashdumps.py`
 
 ### Start Analyzing the Data and Cracking Results
 Approaches taken:
@@ -77,6 +78,17 @@ On common roots: (the base string or idea that passwords are build around)
 - The process to expand to a more "work password" was complex enough that we there were only a 4 passwords that appeared more than once
 - Identifing common roots in real life password dumps could greatly improve password guessing
 - Understanding the real life personal behind a password can be very instructive in password guessing
+
+On Pwned passwords:
+- 84% of the "personal" passwords were in the HIBP database
+  - Some funny passwords that weren't pwned
+    - securempls
+    - SiestaTime
+    - mountainhike
+- 1 (<0.1%) of the "work" passwords was in the HIBP database
+  - in part due to the median "work" password length of 19
+  - in part due to the healthy adoption of symbols
+- TODO how did this look after the cracking run?
 
 Interesting but requires further study:
 - Deliberately mispelling words in passwords was not explored
