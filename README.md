@@ -29,7 +29,11 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
 ## 🚀 Getting Started
 ### Prerequisites
 * Python 3.10+
-* Google AI Studio API Key (Free Tier)
+* Google AI Studio API Key (Tier 1)
+  * https://ai.google.dev/gemini-api/docs/pricing#gemini-2.5-flash
+  * Free tier limited to 2 requests per minute/20 requests per day
+  * Note that Gemini 2.5 Flash-Lite free limit is 30 RPM, 1,500 RPD
+  * All the good free tiers are gone
 * (Optional) OpenVINO Toolkit for local NPU experiments
 
 ### Installation
