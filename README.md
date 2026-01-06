@@ -69,6 +69,14 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
     - Creates `md5.txt` with md5 hashes
     - Creates `sha1.txt` with sha1 hashes
     - Creates `sha256.txt` with SHA2-256 hashes
+4. `sample.py 25% shadow.txt pwdump.txt md5.txt sha1.txt sha256.txt`
+    - Takes a 25% randomized sample of the specified files
+    - Outputs to new files that start with `sample_`
+      - `sample_shadow.txt`
+      - `sample_pwdump.txt`
+      - `sample_md5.txt`
+      - `sample_sha1.txt`
+      - `sample_sha256.txt`
 
 ### Start Analyzing the Data and Cracking Results
 Approaches taken:
