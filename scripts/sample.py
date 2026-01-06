@@ -4,10 +4,10 @@ Take a random sample from text files (fixed number or percentage).
 Usage: python sample.py <size> <file1> <file2> ...
 Example: python sample.py 10% shadow.txt pwdump.txt
 """
-import sys
-import random
 import os
+import sys
 import math
+import random
 
 def get_sample_size(total_lines, requested):
     """Calculate the final sample size based on integer or percentage string."""
@@ -25,7 +25,7 @@ def get_sample_size(total_lines, requested):
         sys.exit(1)
 
 def process_sampling(requested_size, files):
-    """ main loop to process files ###
+    """ main loop to process files """
     for file_path in files:
         if not os.path.isfile(file_path):
             print(f"Skipping: '{file_path}' (File not found)")
