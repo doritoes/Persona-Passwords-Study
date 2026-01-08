@@ -1,0 +1,1585 @@
+--- Progress: 25/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 0
+  [ENTROPY]    Personal Unique: 25/25
+
+--- Progress: 49/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 0
+  [ENTROPY]    Personal Unique: 49/49
+
+--- Progress: 66/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 8
+  [ENTROPY]    Personal Unique: 66/66
+
+--- Progress: 83/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 16
+  [ENTROPY]    Personal Unique: 82/83
+
+--- Progress: 98/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 26
+  [ENTROPY]    Personal Unique: 95/98
+
+--- Progress: 98/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 35
+  [ENTROPY]    Personal Unique: 95/98
+
+--- Progress: 112/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 46
+  [ENTROPY]    Personal Unique: 109/112
+
+--- Progress: 123/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 60
+  [ENTROPY]    Personal Unique: 120/123
+
+--- Progress: 134/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 74
+  [ENTROPY]    Personal Unique: 130/134
+
+--- Progress: 147/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 86
+  [ENTROPY]    Personal Unique: 143/147
+
+--- Progress: 168/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 88
+  [ENTROPY]    Personal Unique: 161/168
+
+--- Progress: 192/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 89
+  [ENTROPY]    Personal Unique: 179/192
+
+--- Progress: 203/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 103
+  [ENTROPY]    Personal Unique: 188/203
+
+--- Progress: 215/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 116
+  [ENTROPY]    Personal Unique: 198/215
+
+--- Progress: 240/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 116
+  [ENTROPY]    Personal Unique: 218/240
+
+--- Progress: 248/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 133
+  [ENTROPY]    Personal Unique: 225/248
+
+--- Progress: 272/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 134
+  [ENTROPY]    Personal Unique: 244/272
+Batch completely unreadable, skipping...
+
+--- Progress: 290/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 141
+  [ENTROPY]    Personal Unique: 256/290
+
+--- Progress: 293/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 163
+  [ENTROPY]    Personal Unique: 258/293
+
+--- Progress: 304/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 177
+  [ENTROPY]    Personal Unique: 267/304
+
+--- Progress: 309/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 197
+  [ENTROPY]    Personal Unique: 271/309
+
+--- Progress: 314/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 217
+  [ENTROPY]    Personal Unique: 275/314
+
+--- Progress: 319/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 237
+  [ENTROPY]    Personal Unique: 278/319
+
+--- Progress: 326/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 255
+  [ENTROPY]    Personal Unique: 283/326
+
+--- Progress: 330/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 276
+  [ENTROPY]    Personal Unique: 287/330
+
+--- Progress: 344/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 287
+  [ENTROPY]    Personal Unique: 301/344
+
+--- Progress: 369/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 287
+  [ENTROPY]    Personal Unique: 321/369
+
+--- Progress: 394/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 287
+  [ENTROPY]    Personal Unique: 345/394
+
+--- Progress: 397/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 309
+  [ENTROPY]    Personal Unique: 347/397
+
+--- Progress: 421/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 310
+  [ENTROPY]    Personal Unique: 369/421
+
+--- Progress: 427/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 329
+  [ENTROPY]    Personal Unique: 375/427
+
+--- Progress: 432/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 349
+  [ENTROPY]    Personal Unique: 378/432
+
+--- Progress: 456/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 350
+  [ENTROPY]    Personal Unique: 395/456
+
+--- Progress: 478/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 351
+  [ENTROPY]    Personal Unique: 410/478
+
+--- Progress: 503/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 351
+  [ENTROPY]    Personal Unique: 429/503
+
+--- Progress: 507/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 371
+  [ENTROPY]    Personal Unique: 431/507
+
+--- Progress: 527/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 376
+  [ENTROPY]    Personal Unique: 451/527
+
+--- Progress: 533/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 395
+  [ENTROPY]    Personal Unique: 456/533
+
+--- Progress: 537/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 416
+  [ENTROPY]    Personal Unique: 459/537
+
+--- Progress: 544/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 434
+  [ENTROPY]    Personal Unique: 466/544
+
+--- Progress: 549/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 454
+  [ENTROPY]    Personal Unique: 470/549
+
+--- Progress: 562/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 466
+  [ENTROPY]    Personal Unique: 480/562
+
+--- Progress: 586/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 467
+  [ENTROPY]    Personal Unique: 494/586
+
+--- Progress: 591/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 487
+  [ENTROPY]    Personal Unique: 499/591
+
+--- Progress: 615/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 488
+  [ENTROPY]    Personal Unique: 520/615
+
+--- Progress: 639/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 489
+  [ENTROPY]    Personal Unique: 536/639
+
+--- Progress: 643/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 510
+  [ENTROPY]    Personal Unique: 539/643
+
+--- Progress: 663/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 515
+  [ENTROPY]    Personal Unique: 557/663
+
+--- Progress: 668/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 535
+  [ENTROPY]    Personal Unique: 559/668
+
+--- Progress: 673/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 555
+  [ENTROPY]    Personal Unique: 563/673
+
+--- Progress: 679/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 574
+  [ENTROPY]    Personal Unique: 568/679
+
+--- Progress: 704/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 574
+  [ENTROPY]    Personal Unique: 590/704
+
+--- Progress: 710/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 593
+  [ENTROPY]    Personal Unique: 595/710
+
+--- Progress: 714/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 614
+  [ENTROPY]    Personal Unique: 599/714
+
+--- Progress: 724/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 629
+  [ENTROPY]    Personal Unique: 606/724
+
+--- Progress: 747/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 631
+  [ENTROPY]    Personal Unique: 618/747
+Batch completely unreadable, skipping...
+
+--- Progress: 752/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 651
+  [ENTROPY]    Personal Unique: 623/752
+
+--- Progress: 757/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 671
+  [ENTROPY]    Personal Unique: 627/757
+
+--- Progress: 759/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 694
+  [ENTROPY]    Personal Unique: 629/759
+
+--- Progress: 782/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 0 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 696
+  [ENTROPY]    Personal Unique: 643/782
+
+--- Progress: 804/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 698
+  [ENTROPY]    Personal Unique: 660/804
+
+--- Progress: 806/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 721
+  [ENTROPY]    Personal Unique: 661/806
+
+--- Progress: 809/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 743
+  [ENTROPY]    Personal Unique: 664/809
+
+--- Progress: 811/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 766
+  [ENTROPY]    Personal Unique: 665/811
+
+--- Progress: 827/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 775
+  [ENTROPY]    Personal Unique: 675/827
+
+--- Progress: 834/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 793
+  [ENTROPY]    Personal Unique: 682/834
+
+--- Progress: 858/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 793
+  [ENTROPY]    Personal Unique: 700/858
+
+--- Progress: 863/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 813
+  [ENTROPY]    Personal Unique: 705/863
+
+--- Progress: 868/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 833
+  [ENTROPY]    Personal Unique: 707/868
+
+--- Progress: 891/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 835
+  [ENTROPY]    Personal Unique: 720/891
+
+--- Progress: 900/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 851
+  [ENTROPY]    Personal Unique: 726/900
+
+--- Progress: 903/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 873
+  [ENTROPY]    Personal Unique: 729/903
+
+--- Progress: 904/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 896
+  [ENTROPY]    Personal Unique: 730/904
+
+--- Progress: 907/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 918
+  [ENTROPY]    Personal Unique: 732/907
+
+--- Progress: 911/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 939
+  [ENTROPY]    Personal Unique: 734/911
+
+--- Progress: 915/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 960
+  [ENTROPY]    Personal Unique: 737/915
+
+--- Progress: 917/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 983
+  [ENTROPY]    Personal Unique: 738/917
+
+--- Progress: 919/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1006
+  [ENTROPY]    Personal Unique: 740/919
+
+--- Progress: 920/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1030
+  [ENTROPY]    Personal Unique: 741/920
+
+--- Progress: 923/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1052
+  [ENTROPY]    Personal Unique: 743/923
+
+--- Progress: 926/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1074
+  [ENTROPY]    Personal Unique: 746/926
+Batch completely unreadable, skipping...
+
+--- Progress: 929/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1096
+  [ENTROPY]    Personal Unique: 748/929
+
+--- Progress: 932/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1118
+  [ENTROPY]    Personal Unique: 751/932
+
+--- Progress: 937/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1138
+  [ENTROPY]    Personal Unique: 755/937
+
+--- Progress: 940/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1160
+  [ENTROPY]    Personal Unique: 755/940
+
+--- Progress: 944/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1181
+  [ENTROPY]    Personal Unique: 755/944
+
+--- Progress: 968/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1182
+  [ENTROPY]    Personal Unique: 766/968
+
+--- Progress: 973/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1202
+  [ENTROPY]    Personal Unique: 770/973
+
+--- Progress: 976/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1222
+  [ENTROPY]    Personal Unique: 771/976
+
+--- Progress: 995/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1227
+  [ENTROPY]    Personal Unique: 780/995
+
+--- Progress: 1001/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1246
+  [ENTROPY]    Personal Unique: 782/1001
+
+--- Progress: 1006/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1266
+  [ENTROPY]    Personal Unique: 787/1006
+
+--- Progress: 1008/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1289
+  [ENTROPY]    Personal Unique: 789/1008
+
+--- Progress: 1009/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1313
+  [ENTROPY]    Personal Unique: 790/1009
+
+--- Progress: 1011/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1336
+  [ENTROPY]    Personal Unique: 791/1011
+
+--- Progress: 1019/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1353
+  [ENTROPY]    Personal Unique: 797/1019
+
+--- Progress: 1022/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1375
+  [ENTROPY]    Personal Unique: 799/1022
+
+--- Progress: 1025/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1397
+  [ENTROPY]    Personal Unique: 802/1025
+
+--- Progress: 1028/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1419
+  [ENTROPY]    Personal Unique: 805/1028
+
+--- Progress: 1033/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1439
+  [ENTROPY]    Personal Unique: 809/1033
+
+--- Progress: 1035/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1462
+  [ENTROPY]    Personal Unique: 811/1035
+
+--- Progress: 1059/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1463
+  [ENTROPY]    Personal Unique: 824/1059
+
+--- Progress: 1060/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1487
+  [ENTROPY]    Personal Unique: 825/1060
+
+--- Progress: 1065/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1507
+  [ENTROPY]    Personal Unique: 830/1065
+
+--- Progress: 1083/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1514
+  [ENTROPY]    Personal Unique: 840/1083
+
+--- Progress: 1086/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1536
+  [ENTROPY]    Personal Unique: 843/1086
+
+--- Progress: 1088/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1559
+  [ENTROPY]    Personal Unique: 845/1088
+
+--- Progress: 1093/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1579
+  [ENTROPY]    Personal Unique: 848/1093
+
+--- Progress: 1097/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1600
+  [ENTROPY]    Personal Unique: 848/1097
+
+--- Progress: 1098/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1624
+  [ENTROPY]    Personal Unique: 849/1098
+
+--- Progress: 1099/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1648
+  [ENTROPY]    Personal Unique: 850/1099
+
+--- Progress: 1111/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1661
+  [ENTROPY]    Personal Unique: 854/1111
+
+--- Progress: 1119/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1678
+  [ENTROPY]    Personal Unique: 858/1119
+
+--- Progress: 1123/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1699
+  [ENTROPY]    Personal Unique: 861/1123
+
+--- Progress: 1147/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1700
+  [ENTROPY]    Personal Unique: 881/1147
+
+--- Progress: 1148/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1724
+  [ENTROPY]    Personal Unique: 881/1148
+
+--- Progress: 1154/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1743
+  [ENTROPY]    Personal Unique: 885/1154
+
+--- Progress: 1156/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1765
+  [ENTROPY]    Personal Unique: 887/1156
+
+--- Progress: 1158/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1788
+  [ENTROPY]    Personal Unique: 887/1158
+
+--- Progress: 1159/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1812
+  [ENTROPY]    Personal Unique: 887/1159
+
+--- Progress: 1164/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1832
+  [ENTROPY]    Personal Unique: 890/1164
+
+--- Progress: 1176/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1845
+  [ENTROPY]    Personal Unique: 898/1176
+
+--- Progress: 1187/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1859
+  [ENTROPY]    Personal Unique: 906/1187
+
+--- Progress: 1189/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1882
+  [ENTROPY]    Personal Unique: 907/1189
+
+--- Progress: 1190/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1906
+  [ENTROPY]    Personal Unique: 907/1190
+
+--- Progress: 1192/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1929
+  [ENTROPY]    Personal Unique: 909/1192
+
+--- Progress: 1195/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1951
+  [ENTROPY]    Personal Unique: 910/1195
+
+--- Progress: 1210/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1961
+  [ENTROPY]    Personal Unique: 923/1210
+
+--- Progress: 1214/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 1982
+  [ENTROPY]    Personal Unique: 923/1214
+
+--- Progress: 1215/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2005
+  [ENTROPY]    Personal Unique: 924/1215
+
+--- Progress: 1231/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2014
+  [ENTROPY]    Personal Unique: 932/1231
+
+--- Progress: 1233/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2037
+  [ENTROPY]    Personal Unique: 934/1233
+
+--- Progress: 1237/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2058
+  [ENTROPY]    Personal Unique: 936/1237
+
+--- Progress: 1243/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2077
+  [ENTROPY]    Personal Unique: 939/1243
+
+--- Progress: 1257/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2088
+  [ENTROPY]    Personal Unique: 946/1257
+
+--- Progress: 1260/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2110
+  [ENTROPY]    Personal Unique: 949/1260
+
+--- Progress: 1284/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2111
+  [ENTROPY]    Personal Unique: 963/1284
+
+--- Progress: 1284/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2135
+  [ENTROPY]    Personal Unique: 963/1284
+
+--- Progress: 1291/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2153
+  [ENTROPY]    Personal Unique: 968/1291
+
+--- Progress: 1296/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2173
+  [ENTROPY]    Personal Unique: 971/1296
+
+--- Progress: 1300/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2194
+  [ENTROPY]    Personal Unique: 973/1300
+
+--- Progress: 1302/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2217
+  [ENTROPY]    Personal Unique: 974/1302
+
+--- Progress: 1324/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2220
+  [ENTROPY]    Personal Unique: 985/1324
+
+--- Progress: 1326/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2243
+  [ENTROPY]    Personal Unique: 987/1326
+
+--- Progress: 1330/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2264
+  [ENTROPY]    Personal Unique: 989/1330
+
+--- Progress: 1355/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2264
+  [ENTROPY]    Personal Unique: 1002/1355
+
+--- Progress: 1356/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2288
+  [ENTROPY]    Personal Unique: 1003/1356
+
+--- Progress: 1359/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2310
+  [ENTROPY]    Personal Unique: 1005/1359
+
+--- Progress: 1374/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2320
+  [ENTROPY]    Personal Unique: 1013/1374
+
+--- Progress: 1377/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2342
+  [ENTROPY]    Personal Unique: 1016/1377
+
+--- Progress: 1379/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2365
+  [ENTROPY]    Personal Unique: 1017/1379
+
+--- Progress: 1382/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2386
+  [ENTROPY]    Personal Unique: 1020/1382
+
+--- Progress: 1390/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2403
+  [ENTROPY]    Personal Unique: 1027/1390
+
+--- Progress: 1413/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2405
+  [ENTROPY]    Personal Unique: 1037/1413
+
+--- Progress: 1417/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2426
+  [ENTROPY]    Personal Unique: 1040/1417
+
+--- Progress: 1420/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2448
+  [ENTROPY]    Personal Unique: 1041/1420
+
+--- Progress: 1423/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2470
+  [ENTROPY]    Personal Unique: 1043/1423
+
+--- Progress: 1425/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2493
+  [ENTROPY]    Personal Unique: 1043/1425
+
+--- Progress: 1448/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2495
+  [ENTROPY]    Personal Unique: 1056/1448
+
+--- Progress: 1453/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2515
+  [ENTROPY]    Personal Unique: 1060/1453
+
+--- Progress: 1458/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2535
+  [ENTROPY]    Personal Unique: 1063/1458
+
+--- Progress: 1481/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2537
+  [ENTROPY]    Personal Unique: 1076/1481
+
+--- Progress: 1486/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2557
+  [ENTROPY]    Personal Unique: 1080/1486
+
+--- Progress: 1486/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2582
+  [ENTROPY]    Personal Unique: 1080/1486
+
+--- Progress: 1486/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2607
+  [ENTROPY]    Personal Unique: 1080/1486
+
+--- Progress: 1506/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 0 | Block: 0
+  [IDENTITY]   Duplicates: 2612
+  [ENTROPY]    Personal Unique: 1089/1506
+
+--- Progress: 1525/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2617
+  [ENTROPY]    Personal Unique: 1097/1525
+
+--- Progress: 1528/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2639
+  [ENTROPY]    Personal Unique: 1100/1528
+
+--- Progress: 1531/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2661
+  [ENTROPY]    Personal Unique: 1103/1531
+
+--- Progress: 1543/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2674
+  [ENTROPY]    Personal Unique: 1111/1543
+
+--- Progress: 1546/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2696
+  [ENTROPY]    Personal Unique: 1114/1546
+
+--- Progress: 1549/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2718
+  [ENTROPY]    Personal Unique: 1117/1549
+
+--- Progress: 1551/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2741
+  [ENTROPY]    Personal Unique: 1118/1551
+
+--- Progress: 1553/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2763
+  [ENTROPY]    Personal Unique: 1118/1553
+Batch completely unreadable, skipping...
+
+--- Progress: 1557/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2784
+  [ENTROPY]    Personal Unique: 1122/1557
+
+--- Progress: 1574/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2792
+  [ENTROPY]    Personal Unique: 1132/1574
+
+--- Progress: 1582/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2809
+  [ENTROPY]    Personal Unique: 1135/1582
+
+--- Progress: 1587/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2829
+  [ENTROPY]    Personal Unique: 1138/1587
+
+--- Progress: 1588/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2853
+  [ENTROPY]    Personal Unique: 1138/1588
+
+--- Progress: 1588/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2878
+  [ENTROPY]    Personal Unique: 1138/1588
+
+--- Progress: 1589/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2902
+  [ENTROPY]    Personal Unique: 1139/1589
+
+--- Progress: 1589/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2927
+  [ENTROPY]    Personal Unique: 1139/1589
+
+--- Progress: 1590/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2951
+  [ENTROPY]    Personal Unique: 1140/1590
+
+--- Progress: 1594/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2972
+  [ENTROPY]    Personal Unique: 1142/1594
+
+--- Progress: 1617/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2974
+  [ENTROPY]    Personal Unique: 1152/1617
+
+--- Progress: 1620/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2996
+  [ENTROPY]    Personal Unique: 1155/1620
+
+--- Progress: 1642/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 2999
+  [ENTROPY]    Personal Unique: 1160/1642
+
+--- Progress: 1645/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3021
+  [ENTROPY]    Personal Unique: 1162/1645
+
+--- Progress: 1649/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3042
+  [ENTROPY]    Personal Unique: 1165/1649
+
+--- Progress: 1651/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3065
+  [ENTROPY]    Personal Unique: 1166/1651
+
+--- Progress: 1672/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3069
+  [ENTROPY]    Personal Unique: 1173/1672
+
+--- Progress: 1693/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3073
+  [ENTROPY]    Personal Unique: 1185/1693
+
+--- Progress: 1694/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3097
+  [ENTROPY]    Personal Unique: 1185/1694
+
+--- Progress: 1698/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3118
+  [ENTROPY]    Personal Unique: 1185/1698
+
+--- Progress: 1698/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3143
+  [ENTROPY]    Personal Unique: 1185/1698
+
+--- Progress: 1698/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3168
+  [ENTROPY]    Personal Unique: 1185/1698
+
+--- Progress: 1700/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3191
+  [ENTROPY]    Personal Unique: 1186/1700
+
+--- Progress: 1700/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3216
+  [ENTROPY]    Personal Unique: 1186/1700
+
+--- Progress: 1703/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3238
+  [ENTROPY]    Personal Unique: 1188/1703
+
+--- Progress: 1726/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3240
+  [ENTROPY]    Personal Unique: 1197/1726
+
+--- Progress: 1726/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3265
+  [ENTROPY]    Personal Unique: 1197/1726
+
+--- Progress: 1727/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3289
+  [ENTROPY]    Personal Unique: 1198/1727
+
+--- Progress: 1727/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3314
+  [ENTROPY]    Personal Unique: 1198/1727
+
+--- Progress: 1730/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3336
+  [ENTROPY]    Personal Unique: 1200/1730
+
+--- Progress: 1733/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3357
+  [ENTROPY]    Personal Unique: 1203/1733
+
+--- Progress: 1734/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3381
+  [ENTROPY]    Personal Unique: 1204/1734
+
+--- Progress: 1736/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3404
+  [ENTROPY]    Personal Unique: 1205/1736
+
+--- Progress: 1737/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3428
+  [ENTROPY]    Personal Unique: 1206/1737
+
+--- Progress: 1741/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3449
+  [ENTROPY]    Personal Unique: 1209/1741
+
+--- Progress: 1762/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3453
+  [ENTROPY]    Personal Unique: 1218/1762
+
+--- Progress: 1765/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3474
+  [ENTROPY]    Personal Unique: 1220/1765
+
+--- Progress: 1789/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3475
+  [ENTROPY]    Personal Unique: 1243/1789
+
+--- Progress: 1792/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3497
+  [ENTROPY]    Personal Unique: 1244/1792
+
+--- Progress: 1794/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3520
+  [ENTROPY]    Personal Unique: 1245/1794
+Batch completely unreadable, skipping...
+
+--- Progress: 1794/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3545
+  [ENTROPY]    Personal Unique: 1245/1794
+
+--- Progress: 1799/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3565
+  [ENTROPY]    Personal Unique: 1247/1799
+
+--- Progress: 1800/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3589
+  [ENTROPY]    Personal Unique: 1247/1800
+
+--- Progress: 1820/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3594
+  [ENTROPY]    Personal Unique: 1258/1820
+
+--- Progress: 1845/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3594
+  [ENTROPY]    Personal Unique: 1265/1845
+
+--- Progress: 1847/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3617
+  [ENTROPY]    Personal Unique: 1267/1847
+
+--- Progress: 1849/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3640
+  [ENTROPY]    Personal Unique: 1269/1849
+
+--- Progress: 1869/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3645
+  [ENTROPY]    Personal Unique: 1274/1869
+
+--- Progress: 1870/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3669
+  [ENTROPY]    Personal Unique: 1274/1870
+
+--- Progress: 1871/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3693
+  [ENTROPY]    Personal Unique: 1275/1871
+
+--- Progress: 1872/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3717
+  [ENTROPY]    Personal Unique: 1275/1872
+
+--- Progress: 1874/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3740
+  [ENTROPY]    Personal Unique: 1277/1874
+
+--- Progress: 1875/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3764
+  [ENTROPY]    Personal Unique: 1278/1875
+
+--- Progress: 1877/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3787
+  [ENTROPY]    Personal Unique: 1279/1877
+
+--- Progress: 1878/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3811
+  [ENTROPY]    Personal Unique: 1279/1878
+
+--- Progress: 1900/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3814
+  [ENTROPY]    Personal Unique: 1293/1900
+
+--- Progress: 1901/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3838
+  [ENTROPY]    Personal Unique: 1293/1901
+
+--- Progress: 1903/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3861
+  [ENTROPY]    Personal Unique: 1294/1903
+
+--- Progress: 1906/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3882
+  [ENTROPY]    Personal Unique: 1295/1906
+
+--- Progress: 1927/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3886
+  [ENTROPY]    Personal Unique: 1312/1927
+
+--- Progress: 1951/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3887
+  [ENTROPY]    Personal Unique: 1319/1951
+
+--- Progress: 1951/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3912
+  [ENTROPY]    Personal Unique: 1319/1951
+
+--- Progress: 1953/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3935
+  [ENTROPY]    Personal Unique: 1321/1953
+
+--- Progress: 1955/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3958
+  [ENTROPY]    Personal Unique: 1321/1955
+
+--- Progress: 1959/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 3979
+  [ENTROPY]    Personal Unique: 1325/1959
+
+--- Progress: 1960/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 4003
+  [ENTROPY]    Personal Unique: 1325/1960
+
+--- Progress: 1961/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 4027
+  [ENTROPY]    Personal Unique: 1325/1961
+
+--- Progress: 1963/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 4050
+  [ENTROPY]    Personal Unique: 1326/1963
+
+--- Progress: 1984/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 4054
+  [ENTROPY]    Personal Unique: 1339/1984
+
+--- Progress: 1995/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 1 | Complex: 1 | Block: 0
+  [IDENTITY]   Duplicates: 4068
+  [ENTROPY]    Personal Unique: 1342/1995
+
+--- Progress: 1999/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4088
+  [ENTROPY]    Personal Unique: 1346/1999
+
+--- Progress: 2001/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 1 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4111
+  [ENTROPY]    Personal Unique: 1347/2001
+
+--- Progress: 2004/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4133
+  [ENTROPY]    Personal Unique: 1350/2004
+
+--- Progress: 2004/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4158
+  [ENTROPY]    Personal Unique: 1350/2004
+
+--- Progress: 2006/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4180
+  [ENTROPY]    Personal Unique: 1351/2006
+
+--- Progress: 2028/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 1 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4183
+  [ENTROPY]    Personal Unique: 1367/2028
+
+--- Progress: 2043/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 1 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4193
+  [ENTROPY]    Personal Unique: 1371/2043
+
+--- Progress: 2048/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 1 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4213
+  [ENTROPY]    Personal Unique: 1376/2048
+
+--- Progress: 2069/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 2 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4215
+  [ENTROPY]    Personal Unique: 1388/2069
+
+--- Progress: 2073/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4235
+  [ENTROPY]    Personal Unique: 1391/2073
+
+--- Progress: 2089/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4244
+  [ENTROPY]    Personal Unique: 1403/2089
+
+--- Progress: 2110/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4248
+  [ENTROPY]    Personal Unique: 1408/2110
+
+--- Progress: 2132/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4251
+  [ENTROPY]    Personal Unique: 1420/2132
+
+--- Progress: 2150/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4258
+  [ENTROPY]    Personal Unique: 1426/2150
+
+--- Progress: 2172/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4261
+  [ENTROPY]    Personal Unique: 1435/2172
+
+--- Progress: 2193/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4265
+  [ENTROPY]    Personal Unique: 1450/2193
+
+--- Progress: 2202/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4281
+  [ENTROPY]    Personal Unique: 1453/2202
+
+--- Progress: 2202/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4306
+  [ENTROPY]    Personal Unique: 1453/2202
+
+--- Progress: 2203/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4330
+  [ENTROPY]    Personal Unique: 1454/2203
+
+--- Progress: 2203/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4355
+  [ENTROPY]    Personal Unique: 1454/2203
+
+--- Progress: 2208/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4375
+  [ENTROPY]    Personal Unique: 1456/2208
+
+--- Progress: 2231/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4377
+  [ENTROPY]    Personal Unique: 1473/2231
+
+--- Progress: 2234/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4399
+  [ENTROPY]    Personal Unique: 1476/2234
+
+--- Progress: 2238/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4420
+  [ENTROPY]    Personal Unique: 1477/2238
+
+--- Progress: 2238/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4445
+  [ENTROPY]    Personal Unique: 1477/2238
+
+--- Progress: 2241/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 3 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4467
+  [ENTROPY]    Personal Unique: 1479/2241
+
+--- Progress: 2257/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4475
+  [ENTROPY]    Personal Unique: 1490/2257
+
+--- Progress: 2282/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4475
+  [ENTROPY]    Personal Unique: 1502/2282
+
+--- Progress: 2304/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4478
+  [ENTROPY]    Personal Unique: 1519/2304
+
+--- Progress: 2304/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4503
+  [ENTROPY]    Personal Unique: 1519/2304
+
+--- Progress: 2305/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4527
+  [ENTROPY]    Personal Unique: 1519/2305
+
+--- Progress: 2317/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4540
+  [ENTROPY]    Personal Unique: 1528/2317
+
+--- Progress: 2318/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4563
+  [ENTROPY]    Personal Unique: 1529/2318
+
+--- Progress: 2321/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4585
+  [ENTROPY]    Personal Unique: 1530/2321
+
+--- Progress: 2329/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4602
+  [ENTROPY]    Personal Unique: 1537/2329
+
+--- Progress: 2333/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4623
+  [ENTROPY]    Personal Unique: 1538/2333
+
+--- Progress: 2334/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4647
+  [ENTROPY]    Personal Unique: 1539/2334
+
+--- Progress: 2335/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4671
+  [ENTROPY]    Personal Unique: 1540/2335
+
+--- Progress: 2337/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4694
+  [ENTROPY]    Personal Unique: 1540/2337
+
+--- Progress: 2350/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4706
+  [ENTROPY]    Personal Unique: 1544/2350
+
+--- Progress: 2351/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4730
+  [ENTROPY]    Personal Unique: 1544/2351
+
+--- Progress: 2351/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4754
+  [ENTROPY]    Personal Unique: 1544/2351
+
+--- Progress: 2353/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4777
+  [ENTROPY]    Personal Unique: 1545/2353
+
+--- Progress: 2369/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4786
+  [ENTROPY]    Personal Unique: 1555/2369
+
+--- Progress: 2371/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4809
+  [ENTROPY]    Personal Unique: 1555/2371
+
+--- Progress: 2381/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4824
+  [ENTROPY]    Personal Unique: 1560/2381
+
+--- Progress: 2381/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4849
+  [ENTROPY]    Personal Unique: 1560/2381
+
+--- Progress: 2382/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4873
+  [ENTROPY]    Personal Unique: 1561/2382
+
+--- Progress: 2384/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4895
+  [ENTROPY]    Personal Unique: 1561/2384
+
+--- Progress: 2386/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4916
+  [ENTROPY]    Personal Unique: 1563/2386
+
+--- Progress: 2389/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4938
+  [ENTROPY]    Personal Unique: 1564/2389
+
+--- Progress: 2391/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4961
+  [ENTROPY]    Personal Unique: 1566/2391
+
+--- Progress: 2405/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4972
+  [ENTROPY]    Personal Unique: 1570/2405
+
+--- Progress: 2405/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 4997
+  [ENTROPY]    Personal Unique: 1570/2405
+
+--- Progress: 2406/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5021
+  [ENTROPY]    Personal Unique: 1571/2406
+
+--- Progress: 2408/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5044
+  [ENTROPY]    Personal Unique: 1572/2408
+
+--- Progress: 2408/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5069
+  [ENTROPY]    Personal Unique: 1572/2408
+
+--- Progress: 2423/2500 Sector: [Construction] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5079
+  [ENTROPY]    Personal Unique: 1583/2423
+
+--- Progress: 2427/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5100
+  [ENTROPY]    Personal Unique: 1585/2427
+
+--- Progress: 2430/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5122
+  [ENTROPY]    Personal Unique: 1586/2430
+
+--- Progress: 2439/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5138
+  [ENTROPY]    Personal Unique: 1591/2439
+
+--- Progress: 2458/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5144
+  [ENTROPY]    Personal Unique: 1600/2458
+
+--- Progress: 2461/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5166
+  [ENTROPY]    Personal Unique: 1601/2461
+Batch completely unreadable, skipping...
+
+--- Progress: 2464/2500 Sector: [Healthcare] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5188
+  [ENTROPY]    Personal Unique: 1602/2464
+
+--- Progress: 2466/2500 Sector: [Retail] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5211
+  [ENTROPY]    Personal Unique: 1604/2466
+
+--- Progress: 2469/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5233
+  [ENTROPY]    Personal Unique: 1607/2469
+
+--- Progress: 2493/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5234
+  [ENTROPY]    Personal Unique: 1618/2493
+
+--- Progress: 2495/2500 Sector: [Education] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5239
+  [ENTROPY]    Personal Unique: 1620/2495
+
+--- Progress: 2495/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5243
+  [ENTROPY]    Personal Unique: 1620/2495
+
+--- Progress: 2495/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5248
+  [ENTROPY]    Personal Unique: 1620/2495
+
+--- Progress: 2496/2500 Sector: [Tech] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5252
+  [ENTROPY]    Personal Unique: 1620/2496
+
+--- Progress: 2500/2500 Sector: [Banking] ---
+  [REJECTIONS] Pattern: 4 | Complex: 2 | Block: 0
+  [IDENTITY]   Duplicates: 5252
+  [ENTROPY]    Personal Unique: 1624/2500

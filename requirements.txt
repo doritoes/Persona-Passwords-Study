@@ -1,0 +1,13 @@
+# --- AI & Behavioral Simulation ---
+google-genai
+
+# --- Networking & HIBP API ---
+requests
+
+# --- Security & Hashing ---
+# Used for create_hashdumps.py if you use modern hashing algorithms
+bcrypt
+passlib
+
+# --- Environment ---
+python-dotenv

@@ -1,0 +1,31 @@
+=== PERSONA STUDY DATA SUMMARY | Tue Jan  6 01:48:36 2026 ===
+Total Accepted: 2500 / 2500
+Total API Attempts: 7758
+Rejection - Duplicate:  5252
+Rejection - Pattern:    4 (Emoji/Spaces/Unallowed Symbols)
+Rejection - Complexity: 2
+Rejection - Blocklist:  0
+
+--- TOP 10 PERSONAL ROOTS ---
+desertrose: 38
+parisjetaime: 24
+techgeek: 21
+travelbug: 20
+familyfirst: 20
+bookworm: 18
+dragonfly: 14
+footballfan: 13
+balletdancer: 13
+golfswing: 12
+
+--- TOP 10 WORK PASSWORDS ---
+TechGuy!Support#24: 2
+MyCatLuna!2023: 2
+CricketFan!2023#: 2
+DesertRose$2023!: 2
+MyD0gL3o!2024Bank: 1
+S0cc3rF@n@t1cs#R1sk: 1
+M@KidsRBest!B@nkMgr: 1
+T3chGvru78$IT$upport: 1
+D3sertR0se!C0mpli@nce: 1
+Gr33nF1elds!L0an0ffice: 1

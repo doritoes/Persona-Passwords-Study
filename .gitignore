@@ -1,0 +1,23 @@
+# --- SECURITY ---
+# Never upload your keys!
+config.py
+.env
+credentials.json
+
+# --- DATA OUTPUTS ---
+# Keep your research results local until you're ready to commit them
+*_study.json
+diverse_human_study.json
+
+# --- PYTHON JUNK ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env/
+
+# --- SYSTEM FILES ---
+.DS_Store
+Thumbs.db
