@@ -120,7 +120,6 @@ On Pwned passwords:
 - 1 (<0.1%) of the "work" passwords was in the HIBP database
   - in part due to the median "work" password length of 19 (minimum of 13)
   - in part due to the healthy adoption of symbols ("3 of 4 types" policy)
-- TODO how did this look after the cracking run?
 
 On cracked passwords:
 - Similar rates of 83% for cracking and HIBP
@@ -148,6 +147,9 @@ On cracked passwords:
   - SkiSlopes
   - accountingWhiz
   - diyexpert
+
+Key Learnings:
+- "3 of 4 character classes" was very effective, no need to require all 4 character classes
 
 Interesting but requires further study:
 - Deliberately mispelling words in passwords was not explored
