@@ -28,11 +28,6 @@ To achieve higher behavioral fidelity, the study pivoted to the **Gemini API**. 
 
 Using gemini.google.com to build prompts led to a variety of caricatures of human behavor. Essentially the study is a "mirror of a mirror", according to Gemini itself. It is a struggle to get natural behavior.
 
-Key learnings
-* Used seeds (job sector, and unique UUID-based seed) to increase diversity of personas created (less duplicates)
-* Higher temperature and batch sizes improved diversity and reduced duplicates but produced more invalid JSON; used JSON data salvage function to extract the usable data
-* Detected and ignored duplicate personas (names)
-
 ## 🚀 Getting Started
 ### Prerequisites
 * Python 3.10+
@@ -192,21 +187,4 @@ The generated study data is saved in JSON format with the following schema:
 An additional credentials.csv is saved in CSV format
 ```csv
 "user_id","password"
-```
-
-## Status
-The current prompt function gives some passable results. It is currently too focused on password reuse (personal to work password relationship), but this is an interesting field of study. The work passwords are checked for validity to 12+ chars and 3 of 4: Upper, Lower, Digit, Symbol. Duplicate personas are prevented from being collected in the output.
-
-```python
-def get_prompt(count, sector):
-    batch_seed = uuid.uuid4().hex[:8]
-    return f"""
-    Generate {count} unique personas for a study on password habits in the {sector} sector.
-    Batch Seed: {batch_seed} (Internal entropy seed).
-    RESEARCH FOCUS: Credential Reuse.
-    - Diversity: Global mix of names and backgrounds.
-    - personal_password: Raw human root (hobbies, slang, pet names).
-    - work_password: A modification of that root (12+ chars, numbers, symbols).
-    Return a JSON list of objects: name, occupation, personal_email, personal_password, work_lanid, work_password, behavior_tag
-    """
 ```
