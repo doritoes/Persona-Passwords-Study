@@ -146,14 +146,14 @@ On cracked passwords:
 
 On sectors:
 - Construction: 402 users, 87.6% pwned rate, average 18.44 characters
-- Banking: 492 users, 84.1% pwned rate, average 19.36 chracters
+- Banking: 492 users, 84.1% pwned rate, average 19.36 characters
 - Education: 487 users, 83.4% pwned rate, average 20.18 characters
 - Tech: 206 users, 80.1% pwned rate, average 18.76 characters
 - :star: Healthcare: 541 users, 79.3% pwned rate, average 18.76 characters
 
 On behaviors:
 - Most users are using "Moderate Reuse" or "Substitution & Suffix"
-- Nearly 35% of useres fell into the High/Direct Reuse category. While these passwords might pass a length check, they are the first to fall in a "targeted" attack if the user's personal email is ever breached.
+- Nearly 35% of users fell into the High/Direct Reuse category. While these passwords might pass a length check, they are the first to fall in a "targeted" attack if the user's personal email is ever breached.
 - 20% of users try to make their passwords more secure by adding their Role or Department. While this creates a unique password, it is highly predictable for an attacker who knows where the person works (via LinkedIn, etc.)
 - Even though the average work password length is high (19+ chars), the Thematic Expansion and Generic Expansion groups (combined ~33%) rely on "Predictable Growth." They aren't creating new random strings; they are just making their favorite personal words longer.
 
@@ -162,7 +162,7 @@ Key Learnings:
 - Residual risk: while the work passwords aren't appearing in HIBP, the are predictable. If an attacker knows the personal password (which they do, thanks to the 84% pwn rate), a simple script could guess the work password by applying the common "Substitution & Suffix" patterns identified in the personas.
 
 Interesting but requires further study:
-- Deliberately mispelling words in passwords was not explored
+- Deliberately misspelling words in passwords was not explored
 - Passphrase initialisms were not explored (take a phrase from a saying or book, take the first letter of each word and form a password)
 - Long passphrases were not explored
   - studying the more common long passphrases in breach dumps would be very instructive for auditing long passwords as well as creating potential initialisms for attack
