@@ -167,7 +167,7 @@ Interesting but requires further study:
 - Long passphrases were not explored
   - studying the more common long passphrases in breach dumps would be very instructive for auditing long passwords as well as creating potential initialisms for attack
 - Using AI to extract the roots inside password dumps might highlight the more common roots to target for cracking
-- Ubuntu 22.04 LTS and later use the yescrypt algorithm. This is identified by the prefix $y$ in the /etc/shadow file. It is <ins>possible</ins> to configure Hashtopolis to audit these hashes using John, but that requires additional research.
+- Ubuntu 22.04 LTS and later use the yescrypt algorithm. This is identified by the prefix `$y$` in the /etc/shadow file. It is <ins>possible</ins> to configure Hashtopolis to audit these hashes using John, but that requires additional research.
 
 ## 📊 Data Format
 The generated study data is saved in JSON format with the following schema:
