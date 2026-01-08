@@ -1,7 +1,7 @@
 # Persona-Passwords-Study 🛡️🧠
 A behavioral cybersecurity study using Large Language Models (LLMs) to simulate human password generation. This project explores the tension between personal identity (hobbies) and security requirements (leetspeak/complexity) through synthetic personas and behavioral profiling.
 
-NOTE If you are looking for sample dataset, see [Sample Dataset](scripts/sample/README.md]
+NOTE If you are looking for sample dataset, see [Sample Dataset](scripts/sample/README.md)
 
 ## 📖 Project Overview
 Humans rarely create truly random passwords. Instead, they use "semantic anchors". This involves personally meaningful words or to satisfy security requirements while maintaining memorability. This repository contains the tools and research data used to simulate these behaviors.
@@ -149,8 +149,22 @@ On cracked passwords:
   - accountingWhiz
   - diyexpert
 
+On sectors:
+- Construction: 402 users, 87.6% pwned rate, average 18.44 characters
+- Banking: 492 users, 84.1% pwned rate, average 19.36 chracters
+- Education: 487 users, 83.4% pwned rate, average 20.18 characters
+- Tech: 206 users, 80.1% pwned rate, average 18.76 characters
+- :star: Healthcare: 541 users, 79.3% pwned rate, average 18.76 characters
+
+On behaviors:
+- Most users are using "Moderate Reuse" or "Substitution & Suffix"
+- Nearly 35% of useres fell into the High/Direct Reuse category. While these passwords might pass a length check, they are the first to fall in a "targeted" attack if the user's personal email is ever breached.
+- 20% of users try to make their passwords more secure by adding their Role or Department. While this creates a unique password, it is highly predictable for an attacker who knows where the person works (via LinkedIn, etc.)
+- Even though the average work password length is high (19+ chars), the Thematic Expansion and Generic Expansion groups (combined ~33%) rely on "Predictable Growth." They aren't creating new random strings; they are just making their favorite personal words longer.
+
 Key Learnings:
-- "3 of 4 character classes" was very effective, no need to require all 4 character classes
+- "3 of 4 character classes" policy was very effective, no need to require all 4 character classes
+- Residual risk: while the work passwords aren't appearing in HIBP, the are predictable. If an attacker knows the personal password (which they do, thanks to the 84% pwn rate), a simple script could guess the work password by applying the common "Substitution & Suffix" patterns identified in the personas.
 
 Interesting but requires further study:
 - Deliberately mispelling words in passwords was not explored
