@@ -26,7 +26,7 @@ To achieve higher behavioral fidelity, the study pivoted to the **Gemini API**. 
 * **Diverse Identities:** Greater cultural and professional variety in generated personas.
 * **Deep Reasoning:** High-quality "behavior tag" explaining the simulated user's choices.
 
-Using gemini.google.com to build prompts led to a variety of caricatures of human behavor. Essentially the study is a "mirror of a mirror", according to Gemini itself. It is a struggle to get natural behavior.
+Using gemini.google.com to build prompts led to a variety of caricatures of human behavior. Essentially the study is a "mirror of a mirror", according to Gemini itself. It is a struggle to get natural behavior.
 
 ## 🚀 Getting Started
 ### Prerequisites
@@ -94,7 +94,7 @@ Approaches taken:
   - issue of non-compliant work passwords was managed by validation functions
 - Hashtopolis as a password auditing platform/cracking tool (running hashcat at scale)
   - Using onerule (rule) + rockyou (password list)
-  - SHA512Crypt hashes (seen in the shadow file list) are very slow and resistent to cracking even with 6 GPU workers
+  - SHA512Crypt hashes (seen in the shadow file list) are very slow and resistant to cracking even with 6 GPU workers
   - HIBP found some passwords that hash cracking did not find
   - Personal passwords had a crack rate of 83% vs HIBP rate of 83%
   - Work passwords had a crack rate of 0%
@@ -102,9 +102,9 @@ Approaches taken:
     - Median work password length was 19, minimum 12, 3 of 4 character classes. Maximum length 34
 
 On common roots: (the base string or idea that passwords are build around)
-- Just like humans (based on data) seem to natually create clusters around certain roots, the AI model also had larger than expected clusters
+- Just like humans (based on data) seem to naturally create clusters around certain roots, the AI model also had larger than expected clusters
 - The process to expand to a more "work password" was complex enough that we there were only a 4 passwords that appeared more than once
-- Identifing common roots in real life password dumps could greatly improve password guessing
+- Identifying common roots in real life password dumps could greatly improve password guessing
 - Understanding the real life personal behind a password can be very instructive in password guessing
 
 On Pwned passwords:
@@ -146,14 +146,14 @@ On cracked passwords:
 
 On sectors:
 - Construction: 402 users, 87.6% pwned rate, average 18.44 characters
-- Banking: 492 users, 84.1% pwned rate, average 19.36 chracters
+- Banking: 492 users, 84.1% pwned rate, average 19.36 characters
 - Education: 487 users, 83.4% pwned rate, average 20.18 characters
 - Tech: 206 users, 80.1% pwned rate, average 18.76 characters
 - :star: Healthcare: 541 users, 79.3% pwned rate, average 18.76 characters
 
 On behaviors:
 - Most users are using "Moderate Reuse" or "Substitution & Suffix"
-- Nearly 35% of useres fell into the High/Direct Reuse category. While these passwords might pass a length check, they are the first to fall in a "targeted" attack if the user's personal email is ever breached.
+- Nearly 35% of users fell into the High/Direct Reuse category. While these passwords might pass a length check, they are the first to fall in a "targeted" attack if the user's personal email is ever breached.
 - 20% of users try to make their passwords more secure by adding their Role or Department. While this creates a unique password, it is highly predictable for an attacker who knows where the person works (via LinkedIn, etc.)
 - Even though the average work password length is high (19+ chars), the Thematic Expansion and Generic Expansion groups (combined ~33%) rely on "Predictable Growth." They aren't creating new random strings; they are just making their favorite personal words longer.
 
@@ -162,12 +162,12 @@ Key Learnings:
 - Residual risk: while the work passwords aren't appearing in HIBP, the are predictable. If an attacker knows the personal password (which they do, thanks to the 84% pwn rate), a simple script could guess the work password by applying the common "Substitution & Suffix" patterns identified in the personas.
 
 Interesting but requires further study:
-- Deliberately mispelling words in passwords was not explored
+- Deliberately misspelling words in passwords was not explored
 - Passphrase initialisms were not explored (take a phrase from a saying or book, take the first letter of each word and form a password)
 - Long passphrases were not explored
   - studying the more common long passphrases in breach dumps would be very instructive for auditing long passwords as well as creating potential initialisms for attack
 - Using AI to extract the roots inside password dumps might highlight the more common roots to target for cracking
-- Ubuntu 22.04 LTS and later use the yescrypt algorithm. This is identified by the prefix $y$ in the /etc/shadow file. It is <ins>possible</ins> to configure Hashtopolis to audit these hashes using John, but that requires additional research.
+- Ubuntu 22.04 LTS and later use the yescrypt algorithm. This is identified by the prefix `$y$` in the /etc/shadow file. It is <ins>possible</ins> to configure Hashtopolis to audit these hashes using John, but that requires additional research.
 
 ## 📊 Data Format
 The generated study data is saved in JSON format with the following schema:
