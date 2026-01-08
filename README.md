@@ -95,7 +95,15 @@ Approaches taken:
   - had issues with creating valid JSON (had to include function to salvage valid JSON data and ignore the extraneous data)
   - temperature 0.7 is just high enough to trigger the invalid JSON, but it gave reasonable data quality (data interesting enough to study)
   - issue of receiving duplicate personas (well at least the name was duplicate) was managed by having high enough temperature and larger batch size ("CHUNK_SIZE")
+  - issue of non-compliant work passwords was managed by validation functions
 - Hashtopolis as a password auditing platform/cracking tool (running hashcat at scale)
+  - Using onerule (rule) + rockyou (password list)
+  - SHA512Crypt hashes (seen in the shadow file list) are very slow and resistent to cracking even with 6 GPU workers
+  - HIBP found some passwords that hash cracking did not find
+  - Personal passwords had a crack rate of 83% vs HIBP rate of 83%
+  - Work passwords had a crack rate of 0%
+    - One work password was in HIBP
+    - Median work password length was 19, minimum 12, 3 of 4 character classes. Maximum length 34
 
 On common roots: (the base string or idea that passwords are build around)
 - Just like humans (based on data) seem to natually create clusters around certain roots, the AI model also had larger than expected clusters
@@ -114,11 +122,39 @@ On Pwned passwords:
   - in part due to the healthy adoption of symbols ("3 of 4 types" policy)
 - TODO how did this look after the cracking run?
 
+On cracked passwords:
+- Similar rates of 83% for cracking and HIBP
+- Example passwords not caught by either:
+  - SoccerFanatics
+  - TechGuru78
+  - SiestaTime
+  - HealthyPlate
+- Example passwords missed by cracking but caught by HIBP
+  - WinterIsComing and winteriscoming
+  - gaelicpride
+  - communityhealth
+  - ikeafurniture
+  - guinnesspint
+  - kendochamp
+- While no work password were cracked, one was found in HIBP
+  - Ch3rryBl0ss0m!
+- Examples of personal passwords that did well, not cracked or found in HIBP
+  - MyKidsAreBest
+  - TechGuru78
+  - BigDataNerd
+  - ExcelMaster
+  - MyHeartBeat
+  - FirstAidHere
+  - SkiSlopes
+  - accountingWhiz
+  - diyexpert
+
 Interesting but requires further study:
 - Deliberately mispelling words in passwords was not explored
-- Passphrase initialisms were not explored
+- Passphrase initialisms were not explored (take a phrase from a saying or book, take the first letter of each word and form a password)
 - Long passphrases were not explored
   - studying the more common long passphrases in breach dumps would be very instructive for auditing long passwords as well as creating potential initialisms for attack
+- Using AI to extract the roots inside password dumps might highlight the more common roots to target for cracking
 
 ## 📊 Data Format
 The generated study data is saved in JSON format with the following schema:
@@ -158,10 +194,7 @@ def get_prompt(count, sector):
 ```
 
 ## Next Steps
-1. run through password audit engine
-2. enrich the XLSX spreadsheet to indicated password cracked
-3. Analysis
-    - take the cracked password list and analyze if there is a relation between the crack of personal vs work passwords; is there a relationship between the two?
+1. Analysis
     - analyze top behavior tags, top tags per sector, per occupation
     - analyze crack rate per sector vs published rates per sector; also crack rates per profession; also crack rates per behavior tag
     - analysis of HIBP coverage, HIBP vs cracked
