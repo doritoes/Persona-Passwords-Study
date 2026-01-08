@@ -210,9 +210,3 @@ def get_prompt(count, sector):
     Return a JSON list of objects: name, occupation, personal_email, personal_password, work_lanid, work_password, behavior_tag
     """
 ```
-
-## Next Steps
-1. Analysis
-    - analyze top behavior tags, top tags per sector, per occupation
-    - analyze crack rate per sector vs published rates per sector; also crack rates per profession; also crack rates per behavior tag
-    - analysis of HIBP coverage, HIBP vs cracked
