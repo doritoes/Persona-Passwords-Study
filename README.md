@@ -26,7 +26,7 @@ To achieve higher behavioral fidelity, the study pivoted to the **Gemini API**. 
 * **Diverse Identities:** Greater cultural and professional variety in generated personas.
 * **Deep Reasoning:** High-quality "behavior tag" explaining the simulated user's choices.
 
-Using gemini.google.com to build prompts led to a variety of caricatures of human behavor. Essentially the study is a "mirror of a mirror", according to Gemini itself. It is a struggle to get natural behavior.
+Using gemini.google.com to build prompts led to a variety of caricatures of human behavior. Essentially the study is a "mirror of a mirror", according to Gemini itself. It is a struggle to get natural behavior.
 
 ## 🚀 Getting Started
 ### Prerequisites
