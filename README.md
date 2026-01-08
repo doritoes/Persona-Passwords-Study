@@ -1,6 +1,8 @@
 # Persona-Passwords-Study 🛡️🧠
 A behavioral cybersecurity study using Large Language Models (LLMs) to simulate human password generation. This project explores the tension between personal identity (hobbies) and security requirements (leetspeak/complexity) through synthetic personas and behavioral profiling.
 
+NOTE If you are looking for sample dataset, see [Sample Dataset](scripts/sample/README.md]
+
 ## 📖 Project Overview
 Humans rarely create truly random passwords. Instead, they use "semantic anchors". This involves personally meaningful words or to satisfy security requirements while maintaining memorability. This repository contains the tools and research data used to simulate these behaviors.
 
