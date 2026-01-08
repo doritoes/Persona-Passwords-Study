@@ -22,9 +22,15 @@ Initially, we attempted to use Qwen-1.5B via `openvino_genai`. This phase reveal
 To achieve higher behavioral fidelity, the study pivoted to the **Gemini API**. This allowed for:
 * **Native JSON Output:** Reliable structured data without parsing errors.
 * **Diverse Identities:** Greater cultural and professional variety in generated personas.
-* **Deep Reasoning:** High-quality "logic notes" explaining the simulated user's choices.
+* **Deep Reasoning:** High-quality "behavior tag" explaining the simulated user's choices.
 
 Using gemini.google.com to build prompts led to a variety of caricatures of human behavor. Essentially the study is a "mirror of a mirror", according to Gemini itself. It is a struggle to get natural behavior.
+
+Key learnings
+* Used seeds (job sector, and unique UUID-based seed) to increase diversity of personas created (less duplicates)
+* Higher temperature and batch sizes improved diversity and reduced duplicates but produced more invalid JSON; used JSON data salvage function to extract the usable data
+* Detected and ignored duplicate personas (names)
+
 
 ## 🚀 Getting Started
 ### Prerequisites
