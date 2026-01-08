@@ -94,7 +94,7 @@ Approaches taken:
   - issue of non-compliant work passwords was managed by validation functions
 - Hashtopolis as a password auditing platform/cracking tool (running hashcat at scale)
   - Using onerule (rule) + rockyou (password list)
-  - SHA512Crypt hashes (seen in the shadow file list) are very slow and resistent to cracking even with 6 GPU workers
+  - SHA512Crypt hashes (seen in the shadow file list) are very slow and resistant to cracking even with 6 GPU workers
   - HIBP found some passwords that hash cracking did not find
   - Personal passwords had a crack rate of 83% vs HIBP rate of 83%
   - Work passwords had a crack rate of 0%
