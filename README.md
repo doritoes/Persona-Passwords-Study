@@ -102,7 +102,7 @@ Approaches taken:
     - Median work password length was 19, minimum 12, 3 of 4 character classes. Maximum length 34
 
 On common roots: (the base string or idea that passwords are build around)
-- Just like humans (based on data) seem to natually create clusters around certain roots, the AI model also had larger than expected clusters
+- Just like humans (based on data) seem to naturally create clusters around certain roots, the AI model also had larger than expected clusters
 - The process to expand to a more "work password" was complex enough that we there were only a 4 passwords that appeared more than once
 - Identifing common roots in real life password dumps could greatly improve password guessing
 - Understanding the real life personal behind a password can be very instructive in password guessing
