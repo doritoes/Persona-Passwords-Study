@@ -49,7 +49,7 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
 ### Installation
 1.  Clone the repository:
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/Persona-Passwords-Study.git](https://github.com/YOUR_USERNAME/Persona-Passwords-Study.git)
+    git clone https://github.com/doritoes/Persona-Passwords-Study.git
     cd Persona-Passwords-Study
     ```
 2.  Install dependencies:
