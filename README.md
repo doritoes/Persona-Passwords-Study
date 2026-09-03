@@ -183,10 +183,10 @@ The generated study data is saved in JSON format with the following schema:
 {
   "name": "Full Name",
   "occupation": "Occupation",
-  "personal_email": "Personal Interest",
-  "personal_password": "Reasoning for password choices",
-  "work_lanid": "Hobby-based password",
-  "work_password": "Complex career-based password",
+  "personal_email": "Personal email address",
+  "personal_password": "Personal password",
+  "work_lanid": "Plausible work LAN ID",
+  "work_password": "Complex password on common work password requirements",
   "behavior_tag": "How the root (personal password) was transformed to become the work password",
   "sector": "The name of the sector provided in the prompt"
 }
