@@ -118,7 +118,7 @@ On common roots: (the base string or idea that passwords are build around)
 - Understanding the real life personal behind a password can be very instructive in password guessing
 
 On Pwned passwords:
-- 84% of the "personal" passwords were in the HIBP database
+- 83% of the "personal" passwords were in the HIBP database
   - Some funny passwords that weren't pwned
     - securempls
     - SiestaTime
@@ -130,10 +130,14 @@ On Pwned passwords:
 On cracked passwords:
 - Similar rates of 83% for cracking and HIBP
 - Example passwords not caught by either:
+  - MyDogLeo
   - SoccerFanatics
-  - TechGuru78
+  - SkiAlpine
+  - ExcelMaster
   - SiestaTime
-  - HealthyPlate
+  - policypro
+  - recordskeeper
+  - riskaware
 - Example passwords missed by cracking but caught by HIBP
   - WinterIsComing and winteriscoming
   - gaelicpride
@@ -143,16 +147,6 @@ On cracked passwords:
   - kendochamp
 - While no work password were cracked, one was found in HIBP
   - Ch3rryBl0ss0m!
-- Examples of personal passwords that did well, not cracked or found in HIBP
-  - MyKidsAreBest
-  - TechGuru78
-  - BigDataNerd
-  - ExcelMaster
-  - MyHeartBeat
-  - FirstAidHere
-  - SkiSlopes
-  - accountingWhiz
-  - diyexpert
 
 On sectors:
 - Construction: 402 users, 87.6% pwned rate, average 18.44 characters
