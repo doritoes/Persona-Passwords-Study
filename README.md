@@ -26,15 +26,23 @@ To achieve higher behavioral fidelity, the study pivoted to the **Gemini API**. 
 * **Diverse Identities:** Greater cultural and professional variety in generated personas.
 * **Deep Reasoning:** High-quality "behavior tag" explaining the simulated user's choices.
 
+### Phase 3: Cloud-Based Reasoning (Gemini 3.8 Flash)
+Pivoting to the latest generation model, Flash 3.8 was selected, at the time, the latest Flash-tier family release. I provides higher multi-step reasoning, contextual adherence, and nuanced role-playing capabilities. 
+To achieve higher behavioral fidelity, the study pivoted to the **Gemini API**. This allowed for:
+* **Native JSON Output:** Reliable structured data without parsing errors.
+* **Diverse Identities:** Greater cultural and professional variety in generated personas.
+* **Deep Reasoning:** High-quality "behavior tag" explaining the simulated user's choices.
+
 Using gemini.google.com to build prompts led to a variety of caricatures of human behavior. Essentially the study is a "mirror of a mirror", according to Gemini itself. It is a struggle to get natural behavior.
 
 ## 🚀 Getting Started
 ### Prerequisites
 * Python 3.10+
-* Google AI Studio API Key (Tier 1)
-  * https://ai.google.dev/gemini-api/docs/pricing#gemini-2.5-flash
-  * Free tier limited to 2 requests per minute/20 requests per day
-  * Note that Gemini 2.5 Flash-Lite free limit is 30 RPM, 1,500 RPD
+* Google AI Studio API Key (Tier 1 or Pay-As-You-Go)
+  * https://ai.google.dev/gemini-api/docs/pricing#gemini-3.8-flash
+  * Free tier is rate-limited (typically 2–15 RPM / 1,500 RPD depending on current quota limits)
+  * Paid Tier 1 ($0.75 per 1M input tokens) for batch persona generation allows avoiding rate limits
+  * Note that Gemini 3.8 Flash-Lite free limit is 2-15 RPM, 1,500 RPD
   * All the good free tiers are gone
 * (Optional) OpenVINO Toolkit for local NPU experiments
 
@@ -46,7 +54,7 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
     ```
 2.  Install dependencies:
     ```bash
-    pip install -U google-generativeai
+    pip install -U google-genai
     ```
 3.  Set up your API Key:
     * Create a `config.py` (added to `.gitignore`) and add: 
@@ -159,7 +167,7 @@ On behaviors:
 
 Key Learnings:
 - "3 of 4 character classes" policy was very effective, no need to require all 4 character classes
-- Residual risk: while the work passwords aren't appearing in HIBP, the are predictable. If an attacker knows the personal password (which they do, thanks to the 84% pwn rate), a simple script could guess the work password by applying the common "Substitution & Suffix" patterns identified in the personas.
+- Residual risk: while the work passwords aren't appearing in HIBP, they are predictable. If an attacker knows the personal password (which they do, thanks to the 84% pwn rate), a simple script could guess the work password by applying the common "Substitution & Suffix" patterns identified in the personas.
 
 Interesting but requires further study:
 - Deliberately misspelling words in passwords was not explored
@@ -179,7 +187,7 @@ The generated study data is saved in JSON format with the following schema:
   "personal_password": "Reasoning for password choices",
   "work_lanid": "Hobby-based password",
   "work_password": "Complex career-based password",
-  "behavior_tag": "How the root (personal password) was transformed to be come the work password",
+  "behavior_tag": "How the root (personal password) was transformed to become the work password",
   "sector": "The name of the sector provided in the prompt"
 }
 ```
