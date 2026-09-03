@@ -74,7 +74,7 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
         - Duplicate personas: same name, rejected by script
         - Non-unique personal passwords: allowed by script, note similar common patterns in actual password dumps
         - Non-unique work passwords: allowed by script, note it's less common than for personal passwords; if this starts creeping up, the model has got stuck in a loop doing the same transformations every time
-2. `check_hibp.py credentials.csv`
+2. `check_hibp_csv.py credentials.csv`
     - Checks the passwords in `credentials.csv` against HIBP
     - Outputs `checked_credentials.csv` with the enriched data
 3. `create_hashdumps.py credentials.csv`
@@ -100,6 +100,8 @@ Approaches taken:
   - temperature 0.7 is just high enough to trigger the invalid JSON, but it gave reasonable data quality (data interesting enough to study)
   - issue of receiving duplicate personas (well at least the name was duplicate) was managed by having high enough temperature and larger batch size ("CHUNK_SIZE")
   - issue of non-compliant work passwords was managed by validation functions
+- Gemini 3.8 Flash
+  - initial testing shows more stable output that observes the output scheme
 - Hashtopolis as a password auditing platform/cracking tool (running hashcat at scale)
   - Using onerule (rule) + rockyou (password list)
   - SHA512Crypt hashes (seen in the shadow file list) are very slow and resistant to cracking even with 6 GPU workers
