@@ -54,7 +54,7 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
     ```
 2.  Install dependencies:
     ```bash
-    pip install -U google-genai
+    pip install -U google-genai passlib
     ```
 3.  Set up your API Key:
     * Create a `config.py` (added to `.gitignore`) and add: 
