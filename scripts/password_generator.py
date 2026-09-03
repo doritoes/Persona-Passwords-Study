@@ -188,7 +188,7 @@ def run_study():
                 contents=get_prompt(request_count, sector),
                 config=types.GenerateContentConfig(
                     response_mime_type='application/json',
-                    response_schema=list[Personal],
+                    response_schema=list[Persona],
                     temperature=0.7
                 )
             )
