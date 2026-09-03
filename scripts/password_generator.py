@@ -7,6 +7,7 @@ import json
 import time
 import uuid
 import string
+import warnings
 from collections import Counter
 from pydantic import BaseModel
 from google import genai
@@ -21,6 +22,9 @@ OUTPUT_CSV = "credentials.csv"
 SUMMARY_FILE = "data_summary.txt"
 SECTORS = ["Banking", "Healthcare", "Construction", "Education", "Retail", "Tech"]
 MODEL_TARGET = "gemini-3.8-flash"
+
+# Suppress benign google-genai automatic function calling (AFC) SDK warning
+warnings.filterwarnings("ignore", category=UserWarning, module="google.genai")
 
 # --- FEATURES ---
 ENABLE_BLOCKLIST = True
