@@ -129,7 +129,7 @@ On Pwned passwords:
   - in part due to the median "work" password length of 19 (minimum of 13)
   - in part due to the healthy adoption of symbols ("3 of 4 types" policy)
 
-On cracked passwords:
+On cracked personal passwords:
 - Similar rates of 83% for cracking and HIBP
 - Example passwords not caught by either:
   - MyDogLeo
@@ -151,11 +151,11 @@ On cracked passwords:
   - Ch3rryBl0ss0m!
 
 On sectors:
-- Construction: 402 users, 87.6% pwned rate, average 18.44 characters
-- Banking: 492 users, 84.1% pwned rate, average 19.36 characters
-- Education: 487 users, 83.4% pwned rate, average 20.18 characters
-- Tech: 206 users, 80.1% pwned rate, average 18.76 characters
-- :star: Healthcare: 541 users, 79.3% pwned rate, average 18.76 characters
+- Construction: 540 users, 38.61% pwned rate
+- Banking: 1452 users, 35.61% pwned rate
+- Healthcare: 820 users, 35.85% pwned rate
+- Retail: 922 users, 38.61% pwned rate
+- :star:Tech: 604 users, 30.30% pwned rate
 
 On behaviors:
 - Most users are using "Moderate Reuse" or "Substitution & Suffix"
