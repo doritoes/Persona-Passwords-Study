@@ -1,31 +1,31 @@
-=== PERSONA STUDY DATA SUMMARY | Tue Jan  6 01:48:36 2026 ===
+=== PERSONA STUDY DATA SUMMARY | Thu Sep  3 14:37:54 2026 ===
 Total Accepted: 2500 / 2500
-Total API Attempts: 7758
-Rejection - Duplicate:  5252
-Rejection - Pattern:    4 (Emoji/Spaces/Unallowed Symbols)
-Rejection - Complexity: 2
+Total API Attempts: 8769
+Rejection - Duplicate:  6263
+Rejection - Pattern:    6 (Emoji/Spaces/Unallowed Symbols)
+Rejection - Complexity: 0
 Rejection - Blocklist:  0
 
 --- TOP 10 PERSONAL ROOTS ---
-desertrose: 38
-parisjetaime: 24
-techgeek: 21
-travelbug: 20
-familyfirst: 20
-bookworm: 18
-dragonfly: 14
-footballfan: 13
-balletdancer: 13
-golfswing: 12
+flamengo1981: 16
+goldenretriever: 13
+tacosalpastor: 12
+flamengo81: 12
+starcraft2: 11
+ramenlover: 10
+stroopwafel: 10
+tatramountains: 8
+matryoshka: 7
+apfelstrudel: 7
 
 --- TOP 10 WORK PASSWORDS ---
-TechGuy!Support#24: 2
-MyCatLuna!2023: 2
-CricketFan!2023#: 2
-DesertRose$2023!: 2
-MyD0gL3o!2024Bank: 1
-S0cc3rF@n@t1cs#R1sk: 1
-M@KidsRBest!B@nkMgr: 1
-T3chGvru78$IT$upport: 1
-D3sertR0se!C0mpli@nce: 1
-Gr33nF1elds!L0an0ffice: 1
+Vespaprima@Corp2024: 2
+Lagosvibes2023$$: 2
+Tacosalpastor!2024: 2
+Pandabear88$$2024: 2
+Goldenretriever2024!: 2
+Apfelstrudel2024!: 2
+Pambolero9!2024: 1
+#Bobaice30Bank!: 1
+Shamrock7!Dublin: 1
+Karaktea4$Secure: 1

@@ -26,27 +26,35 @@ To achieve higher behavioral fidelity, the study pivoted to the **Gemini API**. 
 * **Diverse Identities:** Greater cultural and professional variety in generated personas.
 * **Deep Reasoning:** High-quality "behavior tag" explaining the simulated user's choices.
 
+### Phase 3: Cloud-Based Reasoning (Gemini 3.8 Flash)
+Pivoting to the latest generation model, Flash 3.8 was selected, at the time, the latest Flash-tier family release. I provides higher multi-step reasoning, contextual adherence, and nuanced role-playing capabilities. 
+To achieve higher behavioral fidelity, the study pivoted to the **Gemini API**. This allowed for:
+* **Native JSON Output:** Reliable structured data without parsing errors.
+* **Diverse Identities:** Greater cultural and professional variety in generated personas.
+* **Deep Reasoning:** High-quality "behavior tag" explaining the simulated user's choices.
+
 Using gemini.google.com to build prompts led to a variety of caricatures of human behavior. Essentially the study is a "mirror of a mirror", according to Gemini itself. It is a struggle to get natural behavior.
 
 ## 🚀 Getting Started
 ### Prerequisites
 * Python 3.10+
-* Google AI Studio API Key (Tier 1)
-  * https://ai.google.dev/gemini-api/docs/pricing#gemini-2.5-flash
-  * Free tier limited to 2 requests per minute/20 requests per day
-  * Note that Gemini 2.5 Flash-Lite free limit is 30 RPM, 1,500 RPD
+* Google AI Studio API Key (Tier 1 or Pay-As-You-Go)
+  * https://ai.google.dev/gemini-api/docs/pricing#gemini-3.8-flash
+  * Free tier is rate-limited (typically 2–15 RPM / 1,500 RPD depending on current quota limits)
+  * Paid Tier 1 ($0.75 per 1M input tokens) for batch persona generation allows avoiding rate limits
+  * Note that Gemini 3.8 Flash-Lite free limit is 2-15 RPM, 1,500 RPD
   * All the good free tiers are gone
 * (Optional) OpenVINO Toolkit for local NPU experiments
 
 ### Installation
 1.  Clone the repository:
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/Persona-Passwords-Study.git](https://github.com/YOUR_USERNAME/Persona-Passwords-Study.git)
+    git clone https://github.com/doritoes/Persona-Passwords-Study.git
     cd Persona-Passwords-Study
     ```
 2.  Install dependencies:
     ```bash
-    pip install -U google-generativeai
+    pip install -U google-genai passlib
     ```
 3.  Set up your API Key:
     * Create a `config.py` (added to `.gitignore`) and add: 
@@ -66,7 +74,7 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
         - Duplicate personas: same name, rejected by script
         - Non-unique personal passwords: allowed by script, note similar common patterns in actual password dumps
         - Non-unique work passwords: allowed by script, note it's less common than for personal passwords; if this starts creeping up, the model has got stuck in a loop doing the same transformations every time
-2. `check_hibp.py credentials.csv`
+2. `check_hibp_csv.py credentials.csv`
     - Checks the passwords in `credentials.csv` against HIBP
     - Outputs `checked_credentials.csv` with the enriched data
 3. `create_hashdumps.py credentials.csv`
@@ -83,6 +91,8 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
       - `sample_md5.txt`
       - `sample_sha1.txt`
       - `sample_sha256.txt`
+5. `bun check_hibp_report.ts credentials.csv personas.json`
+    - Creates `checked_credentials.report`
 
 ### Start Analyzing the Data and Cracking Results
 Approaches taken:
@@ -92,6 +102,8 @@ Approaches taken:
   - temperature 0.7 is just high enough to trigger the invalid JSON, but it gave reasonable data quality (data interesting enough to study)
   - issue of receiving duplicate personas (well at least the name was duplicate) was managed by having high enough temperature and larger batch size ("CHUNK_SIZE")
   - issue of non-compliant work passwords was managed by validation functions
+- Gemini 3.8 Flash
+  - initial testing shows more stable output that observes the output scheme
 - Hashtopolis as a password auditing platform/cracking tool (running hashcat at scale)
   - Using onerule (rule) + rockyou (password list)
   - SHA512Crypt hashes (seen in the shadow file list) are very slow and resistant to cracking even with 6 GPU workers
@@ -108,7 +120,7 @@ On common roots: (the base string or idea that passwords are build around)
 - Understanding the real life personal behind a password can be very instructive in password guessing
 
 On Pwned passwords:
-- 84% of the "personal" passwords were in the HIBP database
+- 83% of the "personal" passwords were in the HIBP database
   - Some funny passwords that weren't pwned
     - securempls
     - SiestaTime
@@ -117,13 +129,17 @@ On Pwned passwords:
   - in part due to the median "work" password length of 19 (minimum of 13)
   - in part due to the healthy adoption of symbols ("3 of 4 types" policy)
 
-On cracked passwords:
+On cracked personal passwords:
 - Similar rates of 83% for cracking and HIBP
 - Example passwords not caught by either:
+  - MyDogLeo
   - SoccerFanatics
-  - TechGuru78
+  - SkiAlpine
+  - ExcelMaster
   - SiestaTime
-  - HealthyPlate
+  - policypro
+  - recordskeeper
+  - riskaware
 - Example passwords missed by cracking but caught by HIBP
   - WinterIsComing and winteriscoming
   - gaelicpride
@@ -133,23 +149,13 @@ On cracked passwords:
   - kendochamp
 - While no work password were cracked, one was found in HIBP
   - Ch3rryBl0ss0m!
-- Examples of personal passwords that did well, not cracked or found in HIBP
-  - MyKidsAreBest
-  - TechGuru78
-  - BigDataNerd
-  - ExcelMaster
-  - MyHeartBeat
-  - FirstAidHere
-  - SkiSlopes
-  - accountingWhiz
-  - diyexpert
 
 On sectors:
-- Construction: 402 users, 87.6% pwned rate, average 18.44 characters
-- Banking: 492 users, 84.1% pwned rate, average 19.36 characters
-- Education: 487 users, 83.4% pwned rate, average 20.18 characters
-- Tech: 206 users, 80.1% pwned rate, average 18.76 characters
-- :star: Healthcare: 541 users, 79.3% pwned rate, average 18.76 characters
+- Construction: 540 users, 38.61% pwned rate
+- Banking: 1452 users, 35.61% pwned rate
+- Healthcare: 820 users, 35.85% pwned rate
+- Retail: 922 users, 38.61% pwned rate
+- :star:Tech: 604 users, 30.30% pwned rate
 
 On behaviors:
 - Most users are using "Moderate Reuse" or "Substitution & Suffix"
@@ -159,7 +165,7 @@ On behaviors:
 
 Key Learnings:
 - "3 of 4 character classes" policy was very effective, no need to require all 4 character classes
-- Residual risk: while the work passwords aren't appearing in HIBP, the are predictable. If an attacker knows the personal password (which they do, thanks to the 84% pwn rate), a simple script could guess the work password by applying the common "Substitution & Suffix" patterns identified in the personas.
+- Residual risk: while the work passwords aren't appearing in HIBP, they are predictable. If an attacker knows the personal password (which they do, thanks to the 84% pwn rate), a simple script could guess the work password by applying the common "Substitution & Suffix" patterns identified in the personas.
 
 Interesting but requires further study:
 - Deliberately misspelling words in passwords was not explored
@@ -175,11 +181,11 @@ The generated study data is saved in JSON format with the following schema:
 {
   "name": "Full Name",
   "occupation": "Occupation",
-  "personal_email": "Personal Interest",
-  "personal_password": "Reasoning for password choices",
-  "work_lanid": "Hobby-based password",
-  "work_password": "Complex career-based password",
-  "behavior_tag": "How the root (personal password) was transformed to be come the work password",
+  "personal_email": "Personal email address",
+  "personal_password": "Personal password",
+  "work_lanid": "Plausible work LAN ID",
+  "work_password": "Complex password on common work password requirements",
+  "behavior_tag": "How the root (personal password) was transformed to become the work password",
   "sector": "The name of the sector provided in the prompt"
 }
 ```

@@ -1,4 +1,4 @@
-""" generate "human-like" passwords for study - Gemini 2.5 Stable """
+""" generate "human-like" passwords for study - Gemini 3.8 Flash """
 import os
 import re
 import csv
@@ -7,9 +7,11 @@ import json
 import time
 import uuid
 import string
+import warnings
 from collections import Counter
+from pydantic import BaseModel
 from google import genai
-from google.genai import types  # Explicit types for 2.5 config
+from google.genai import types
 from config import API_KEY
 
 # --- SETTINGS ---
@@ -19,6 +21,10 @@ OUTPUT_JSON = "personas.json"
 OUTPUT_CSV = "credentials.csv"
 SUMMARY_FILE = "data_summary.txt"
 SECTORS = ["Banking", "Healthcare", "Construction", "Education", "Retail", "Tech"]
+MODEL_TARGET = "gemini-3.8-flash"
+
+# Suppress benign google-genai automatic function calling (AFC) SDK warning
+warnings.filterwarnings("ignore", category=UserWarning, module="google.genai")
 
 # --- FEATURES ---
 ENABLE_BLOCKLIST = True
@@ -31,6 +37,16 @@ BLOCKLIST = [
 ]
 
 VALID_SYMBOLS = "!@#$%^&*()_+-=[]{}|;:,.<>?"
+
+# --- STRUCTURED OUTPUT SCHEMA ---
+class Persona(BaseModel):
+    name: str
+    occupation: str
+    personal_email: str
+    personal_password: str
+    work_lanid: str
+    work_password: str
+    behavior_tag: str
 
 # --- REPORTING COUNTERS ---
 stats = {
@@ -104,7 +120,6 @@ def write_summary():
         for pw, count in work_pw_registry.most_common(10):
             f.write(f"{pw}: {count}\n")
 
-
 def salvage_json(raw_text):
     """
     Attempts to extract and repair a partial or corrupted JSON list.
@@ -171,32 +186,23 @@ def run_study():
         request_count = min(CHUNK_SIZE, TARGET_COUNT - len(all_personas))
 
         try:
-            # Explicitly targeting 2.5 Flash, high temperature that sometimes fails JSON outout
+            # Targeting Gemini 3.8 Flash with native response schema
             response = client.models.generate_content(
-                model="gemini-2.5-flash",
+                model=MODEL_TARGET,
                 contents=get_prompt(request_count, sector),
                 config=types.GenerateContentConfig(
                     response_mime_type='application/json',
+                    response_schema=list[Persona],
                     temperature=0.7
                 )
             )
 
-            # Robust Cleaning for 2.5 API Responses
-            raw_text = response.text.strip()
-            if raw_text.startswith("```"):
-                # Strips ```json and trailing ```
-                raw_text = raw_text.split("```")[1].replace("json", "", 1).strip()
-
-            #batch_data = json.loads(raw_text)
-            batch_data = salvage_json(response.text)
-            if not batch_data:
-                print("Batch completely unreadable, skipping...")
-                continue
-
-            # Ensure we have a list (some versions wrap in a dict)
-            if isinstance(batch_data, dict):
-                batch_data = next(iter(batch_data.values()))
-
+            # Modern GenAI SDK populates parsed structured response automatically
+            if getattr(response, 'parsed', None):
+                batch_data = [item.model_dump() for item in response.parsed]
+            else:
+                batch_data = json.loads(response.text)
+            
             valid_batch = []
             for p in batch_data:
                 stats["total_generated"] += 1
