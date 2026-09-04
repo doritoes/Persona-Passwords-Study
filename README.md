@@ -91,6 +91,8 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
       - `sample_md5.txt`
       - `sample_sha1.txt`
       - `sample_sha256.txt`
+5. `bun check_hibp_report.ts credentials.csv personas.json`
+    - Creates `checked_credentials.report`
 
 ### Start Analyzing the Data and Cracking Results
 Approaches taken:
