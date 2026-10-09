@@ -1,4 +1,11 @@
 """ generate "human-like" password for study - Gemini 3.8 Flash """
+"""
+Persona Password Study Data Generator - Gemini 3.8 Flash
+Branch: passphrases
+Generates realistic 3-tier credentials (Personal Root, Work Password, Work Passphrase)
+incorporating human behavioral anchors, friction transformations, and dynamic prompt variation.
+"""
+
 import os
 import re
 import csv
@@ -12,7 +19,14 @@ from collections import Counter
 from pydantic import BaseModel
 from google import genai
 from google.genai import types
-from config import API_KEY
+from google.genai.errors import ClientError, APIError
+
+try:
+    from config import API_KEY
+except ImportError:
+    print("❌ ERROR: 'config.py' not found or missing 'API_KEY'.")
+    print("   Please create config.py in the working directory containing: API_KEY = 'your_gemini_key'")
+    sys.exit(1)
 
 # --- SETTINGS ---
 TARGET_COUNT = 2500
@@ -158,6 +172,10 @@ def run_study():
     seen_ids = set()
     recent_names = []
 
+    print("=" * 65)
+    print(" 🛡️🧠 PERSONA PASSWORDS STUDY - SYNTHETIC DATA GENERATOR")
+    print("=" * 65)
+
     if os.path.exists(OUTPUT_JSON):
         try:
             with open(OUTPUT_JSON, 'r') as f:
@@ -170,93 +188,125 @@ def run_study():
                     work_pw_registry[p['work_password']] += 1
                     passphrase_registry[p.get('work_passphrase', '')] += 1
                     recent_names.append(p['name'])
-        except Exception:
-            pass
-
-    while len(all_personas) < TARGET_COUNT:
-        sector = target_sector_override if target_sector_override else SECTORS[len(all_personas) % len(SECTORS)]
-        request_count = min(CHUNK_SIZE, TARGET_COUNT - len(all_personas))
-
-        # Dynamic Temperature Scaling: Increase temp if rejections spike
-        rejection_ratio = stats["rejected_duplicate_persona"] / max(1, stats["total_generated"])
-        current_temp = min(1.1, 0.7 + (rejection_ratio * 0.5))
-
-        try:
-            response = client.models.generate_content(
-                model=MODEL_TARGET,
-                contents=get_prompt(request_count, sector, recent_names[-20:]),
-                config=types.GenerateContentConfig(
-                    system_instruction=SYSTEM_INSTRUCTION,
-                    response_mime_type='application/json',
-                    response_schema=list[Persona],
-                    temperature=current_temp
-                )
-            )
-
-            if getattr(response, 'parsed', None):
-                batch_data = [item.model_dump() for item in response.parsed]
-            else:
-                batch_data = json.loads(response.text)
-
-            valid_batch = []
-            for p in batch_data:
-                stats["total_generated"] += 1
-                p_email = p.get('personal_email', '').lower()
-                w_id = p.get('work_lanid', '').lower()
-
-                if not p_email or p_email in seen_ids or w_id in seen_ids:
-                    stats["rejected_duplicate_persona"] += 1
-                    continue
-
-                is_p_v, p_r = validate_password(p.get('personal_password', ''), check_complexity=False)
-                is_w_v, w_r = validate_password(p.get('work_password', ''), check_complexity=True)
-                is_pass_v, pass_r = validate_password(p.get('work_passphrase', ''), check_complexity=True, is_passphrase=True)
-
-                if is_p_v and is_w_v and is_pass_v:
-                    p['sector'] = sector
-                    valid_batch.append(p)
-                    seen_ids.add(p_email)
-                    seen_ids.add(w_id)
-                    recent_names.append(p.get('name', ''))
-                    stats["accepted"] += 1
-                    
-                    personal_pw_registry[p['personal_password']] += 1
-                    work_pw_registry[p['work_password']] += 1
-                    passphrase_registry[p['work_passphrase']] += 1
-                else:
-                    reason = p_r if not is_p_v else (w_r if not is_w_v else pass_r)
-                    if reason == "pattern":
-                        stats["rejected_pattern"] += 1
-                    elif reason == "complexity":
-                        stats["rejected_complexity"] += 1
-                    elif reason == "blocklist":
-                        stats["rejected_blocklist"] += 1
-
-            all_personas.extend(valid_batch)
-            with open(OUTPUT_JSON, 'w') as f:
-                json.dump(all_personas, f, indent=4)
-
-            # Write 3-tier credentials output block
-            file_exists = os.path.exists(OUTPUT_CSV) and os.path.getsize(OUTPUT_CSV) > 0
-            with open(OUTPUT_CSV, 'a', newline='') as f:
-                writer = csv.writer(f, quoting=csv.QUOTE_ALL)
-                if not file_exists:
-                    writer.writerow(["user_id", "password"])
-                for p in valid_batch:
-                    writer.writerow([p['personal_email'], p['personal_password']])
-                    writer.writerow([p['work_lanid'], p['work_password']])
-                    writer.writerow([p['work_lanid'], p['work_passphrase']])
-
-            write_summary()
-
-            print(f"\n--- Progress: {len(all_personas)}/{TARGET_COUNT} Sector: [{sector}] Temp: [{current_temp:.2f}] ---")
-            print(f"  [REJECTIONS] Pattern: {stats['rejected_pattern']} | Complex: {stats['rejected_complexity']} | Block: {stats['rejected_blocklist']}")
-            print(f"  [IDENTITY]   Duplicates: {stats['rejected_duplicate_persona']}")
-            print(f"  [ENTROPY]    Personal Unique: {len(personal_pw_registry)}/{len(all_personas)}")
-
+            print(f"ℹ️ Loaded existing dataset: {len(all_personas)}/{TARGET_COUNT} personas.")
         except Exception as e:
-            print(f"❌ API/Parse Error: {e}")
-            time.sleep(2)
+            print(f"⚠️ Could not load existing '{OUTPUT_JSON}': {e}. Starting fresh.")
+
+    if len(all_personas) >= TARGET_COUNT:
+        print(f"\n✅ TARGET REACHED: {len(all_personas)} personas already exist in '{OUTPUT_JSON}'.")
+        print("   If you want to generate a new run, archive or remove the existing files:")
+        print("   $ mkdir archive_run && mv personas.json credentials.csv archive_run/")
+        return
+
+    print(f"🚀 Target set to {TARGET_COUNT} personas. Model: [{MODEL_TARGET}]")
+    if target_sector_override:
+        print(f"🎯 Sector Override: Focused strictly on [{target_sector_override}]")
+    print("-" * 65)
+
+    try:
+        while len(all_personas) < TARGET_COUNT:
+            sector = target_sector_override if target_sector_override else SECTORS[len(all_personas) % len(SECTORS)]
+            request_count = min(CHUNK_SIZE, TARGET_COUNT - len(all_personas))
+
+            # Dynamic Temperature Scaling: Increase temp if rejections spike
+            rejection_ratio = stats["rejected_duplicate_persona"] / max(1, stats["total_generated"])
+            current_temp = min(1.1, 0.7 + (rejection_ratio * 0.5))
+
+            try:
+                response = client.models.generate_content(
+                    model=MODEL_TARGET,
+                    contents=get_prompt(request_count, sector, recent_names[-20:]),
+                    config=types.GenerateContentConfig(
+                        system_instruction=SYSTEM_INSTRUCTION,
+                        response_mime_type='application/json',
+                        response_schema=list[Persona],
+                        temperature=current_temp
+                    )
+                )
+
+                if getattr(response, 'parsed', None):
+                    batch_data = [item.model_dump() for item in response.parsed]
+                else:
+                    batch_data = json.loads(response.text)
+
+                valid_batch = []
+                for p in batch_data:
+                    stats["total_generated"] += 1
+                    p_email = p.get('personal_email', '').lower()
+                    w_id = p.get('work_lanid', '').lower()
+
+                    if not p_email or p_email in seen_ids or w_id in seen_ids:
+                        stats["rejected_duplicate_persona"] += 1
+                        continue
+
+                    is_p_v, p_r = validate_password(p.get('personal_password', ''), check_complexity=False)
+                    is_w_v, w_r = validate_password(p.get('work_password', ''), check_complexity=True)
+                    is_pass_v, pass_r = validate_password(p.get('work_passphrase', ''), check_complexity=True, is_passphrase=True)
+
+                    if is_p_v and is_w_v and is_pass_v:
+                        p['sector'] = sector
+                        valid_batch.append(p)
+                        seen_ids.add(p_email)
+                        seen_ids.add(w_id)
+                        recent_names.append(p.get('name', ''))
+                        stats["accepted"] += 1
+                        
+                        personal_pw_registry[p['personal_password']] += 1
+                        work_pw_registry[p['work_password']] += 1
+                        passphrase_registry[p['work_passphrase']] += 1
+                    else:
+                        reason = p_r if not is_p_v else (w_r if not is_w_v else pass_r)
+                        if reason == "pattern":
+                            stats["rejected_pattern"] += 1
+                        elif reason == "complexity":
+                            stats["rejected_complexity"] += 1
+                        elif reason == "blocklist":
+                            stats["rejected_blocklist"] += 1
+
+                all_personas.extend(valid_batch)
+                with open(OUTPUT_JSON, 'w') as f:
+                    json.dump(all_personas, f, indent=4)
+
+                # Write 3-tier credentials output block
+                file_exists = os.path.exists(OUTPUT_CSV) and os.path.getsize(OUTPUT_CSV) > 0
+                with open(OUTPUT_CSV, 'a', newline='') as f:
+                    writer = csv.writer(f, quoting=csv.QUOTE_ALL)
+                    if not file_exists:
+                        writer.writerow(["user_id", "password"])
+                    for p in valid_batch:
+                        writer.writerow([p['personal_email'], p['personal_password']])
+                        writer.writerow([p['work_lanid'], p['work_password']])
+                        writer.writerow([p['work_lanid'], p['work_passphrase']])
+
+                write_summary()
+
+                print(f"📊 Progress: {len(all_personas)}/{TARGET_COUNT} | Sector: [{sector}] | Temp: [{current_temp:.2f}]")
+                print(f"   [Rejections] Dupes: {stats['rejected_duplicate_persona']} | Complex: {stats['rejected_complexity']} | Pattern: {stats['rejected_pattern']}")
+
+            except (ClientError, APIError) as api_err:
+                err_str = str(api_err)
+                if "402" in err_str or "RESOURCE_EXHAUSTED" in err_str:
+                    print("\n🛑 BILLING / CREDIT DEPLETED ERROR (HTTP 402):")
+                    print("   Your Google AI Studio project has run out of prepayment credits or quota limits.")
+                    print("   👉 Manage billing: https://ai.studio/projects")
+                    print("   👉 Learn more: https://ai.google.dev/gemini-api/docs/billing#prepay")
+                    print("\n   Exiting cleanly. Progress saved to disk.")
+                    sys.exit(1)
+                elif "429" in err_str:
+                    print("\n⏳ Rate limit hit (HTTP 429). Waiting 10 seconds before retry...")
+                    time.sleep(10)
+                else:
+                    print(f"❌ API Error: {api_err}")
+                    time.sleep(3)
+
+            except Exception as parse_err:
+                print(f"❌ Parse/Formatting Error: {parse_err}")
+                time.sleep(2)
+
+    except KeyboardInterrupt:
+        print("\n\n⏹️ Process interrupted by user (Ctrl+C).")
+        print(f"   Saved {len(all_personas)} valid personas to '{OUTPUT_JSON}' and '{OUTPUT_CSV}'.")
+        sys.exit(0)
 
 if __name__ == "__main__":
     run_study()
