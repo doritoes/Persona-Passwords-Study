@@ -4,6 +4,8 @@
  * checked_<name>.csv (per-row pwned flag) + checked_<name>.report (summary,
  * broken down by persona "sector" from personas.json).
  *
+ * Remember there are two work credentials: password and passphrase; merged here
+ *
  * Usage:
  *   bun run check_hibp_report.ts <credentials.csv> <personas.json> [--delay-ms=200]
  */

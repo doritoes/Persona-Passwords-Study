@@ -91,7 +91,7 @@ def process_csv(input_file):
 
             if pwned_list:
                 print("\nList of Compromised Passwords:")
-                for p in set(pwned_list): # Using set to show unique passwords
+                for p in sorted(set(pwned_list)): # Using set to show unique passwords
                     print(f" - {p}")
         else:
             print("No data processed.")
