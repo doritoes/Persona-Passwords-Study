@@ -74,7 +74,7 @@ Using gemini.google.com to build prompts led to a variety of caricatures of huma
         - Duplicate personas: same name, rejected by script
         - Non-unique personal passwords: allowed by script, note similar common patterns in actual password dumps
         - Non-unique work passwords: allowed by script, note it's less common than for personal passwords; if this starts creeping up, the model has got stuck in a loop doing the same transformations every time
-2. `check_hibp_csv.py credentials.csv`
+2. `python3 check_hibp_csv.py credentials.csv`
     - Checks the passwords in `credentials.csv` against HIBP
     - Outputs `checked_credentials.csv` with the enriched data
 3. `create_hashdumps.py credentials.csv`
